@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class drawerTile extends StatelessWidget {
+class DrawerTile extends StatelessWidget {
   
   final String picture;
   final String text;
 
-  drawerTile(this.picture,this.text);
+  DrawerTile(this.picture,this.text);
 
   @override
   Widget build(BuildContext context) {

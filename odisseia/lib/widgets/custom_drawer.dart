@@ -30,7 +30,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               )
             ),
-            drawerTile("images/scroll.png","EVOLUÇÃO")
+            DrawerTile("images/scroll.png","EVOLUÇÃO")
           ],
         );
 

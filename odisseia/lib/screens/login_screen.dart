@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:odisseia/screens/home_screen.dart';
 
-void main() {
-  runApp(MaterialApp(title: "Page Login", home: Test()));
-}
-
-class Test extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  _TestState createState() => _TestState();
+  _LoginState createState() => _LoginState();
 }
 
-class _TestState extends State<Test> {
+class _LoginState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +18,7 @@ class _TestState extends State<Test> {
       body: Column(
         children: <Widget>[
           Image.asset(
-            "assets/logo.png",
+            "images/logo.png",
             fit: BoxFit.scaleDown,
             width: 300,
           ),
@@ -30,7 +27,7 @@ class _TestState extends State<Test> {
             style: TextStyle(color: Colors.white, fontSize: 25),
           ),
           _options(),
-          _form(),
+          _form(context)
         ],
       ),
     );
@@ -75,7 +72,7 @@ Widget _options() => Padding(
       ),
     );
 
-Widget _form() => Container(
+Widget _form(BuildContext context) => Container(
       width: 328,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +112,12 @@ Widget _form() => Container(
               "ENTRAR",
               style: TextStyle(fontSize: 14),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
+            },
           )
         ],
       ),
