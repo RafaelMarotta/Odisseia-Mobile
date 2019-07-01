@@ -16,7 +16,6 @@ class HomeScreen extends StatelessWidget {
           body: HomeTab(),
           drawer: CustomDrawer(),
         )
-        
       ],
     );
   }
