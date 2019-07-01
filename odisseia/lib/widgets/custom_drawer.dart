@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:odisseia/tiles/drawer_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget _buildDrawerBack() =>
-        Container(color: Color.fromARGB(255, 255, 124, 64));
+        Container(
+          color: Color.fromARGB(255, 255, 124, 64)
+          );
 
     Widget _buildListView() => ListView(
-          padding: EdgeInsets.only(top: 50),
+          padding: EdgeInsets.only(top: 50,right:40),
           children: <Widget>[
             GestureDetector(
               child: Container(
@@ -40,7 +43,16 @@ class CustomDrawer extends StatelessWidget {
       Stack(
         children: <Widget>[
           _buildDrawerBack(),
-          _buildListView()
+          _buildListView(),
+          Positioned(
+            child: Image.asset(
+            "images/meandro_grego.png",
+            width: 40,
+            height: 100000,
+            repeat: ImageRepeat.repeat,
+            ),
+            right: 0
+          )
         ],
       )
     ]));
