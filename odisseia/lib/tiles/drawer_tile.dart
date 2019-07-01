@@ -15,11 +15,12 @@ class DrawerTile extends StatelessWidget {
       child: InkWell(
         onTap: (){},
         child: Container(
+          margin: EdgeInsets.only(top:30),
           height: 45.0,
           child: Row(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left:20,right:20),
                 child: Image.asset(this.picture)
               ),
               Text(

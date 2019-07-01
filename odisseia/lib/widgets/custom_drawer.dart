@@ -30,6 +30,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               )
             ),
+            DrawerTile("images/helmet.png","MISSÕES"),
             DrawerTile("images/scroll.png","EVOLUÇÃO")
           ],
         );
