@@ -10,27 +10,28 @@ class _LoginState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 124, 64),
-      appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 255, 124, 64),
-        elevation: 0,
-      ),
-      body: Column(
-        children: <Widget>[
-          Image.asset(
-            "images/logo.png",
-            fit: BoxFit.scaleDown,
-            width: 300,
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 255, 124, 64),
+          elevation: 0,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Image.asset(
+                "images/logo.png",
+                fit: BoxFit.scaleDown,
+                width: 300,
+              ),
+              Text(
+                "WELCOME",
+                style: TextStyle(color: Colors.white, fontSize: 25),
+              ),
+              _options(),
+              _form(context)
+            ],
           ),
-          Text(
-            "WELCOME",
-            style: TextStyle(color: Colors.white, fontSize: 25),
-          ),
-          _options(),
-          _form(context)
-        ],
-      ),
-    );
+        ));
   }
 }
 
@@ -114,9 +115,9 @@ Widget _form(BuildContext context) => Container(
             ),
             onPressed: () {
               Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+              );
             },
           )
         ],
