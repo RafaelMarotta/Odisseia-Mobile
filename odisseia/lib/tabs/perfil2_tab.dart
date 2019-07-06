@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class Perfil2 extends StatefulWidget {
+class Perfil2Tab extends StatefulWidget {
   @override
-  _Perfil2State createState() => _Perfil2State();
+  _Perfil2TabState createState() => _Perfil2TabState();
 }
 
-class _Perfil2State extends State<Perfil2> {
+class _Perfil2TabState extends State<Perfil2Tab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

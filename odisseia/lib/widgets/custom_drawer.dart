@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:odisseia/screens/home_screen.dart';
+import 'package:odisseia/screens/perfil_screen.dart';
 import 'package:odisseia/tiles/drawer_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -33,8 +35,8 @@ class CustomDrawer extends StatelessWidget {
                 ),
               )
             ),
-            DrawerTile("images/helmet.png","MISSÕES"),
-            DrawerTile("images/scroll.png","EVOLUÇÃO")
+            DrawerTile("images/helmet.png","MISSÕES",HomeScreen()),
+            DrawerTile("images/scroll.png","EVOLUÇÃO",PerfilScreen())
           ],
         );
 

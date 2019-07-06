@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:odisseia/widgets/custom_drawer.dart';
 
-class HomeTab extends StatelessWidget {
+class BaseTab extends StatefulWidget {
+  Widget _body;
+
+  BaseTab(final Widget body,{Key key} ) : super(key: key) {
+    _body = body;
+  }
+
+  _BaseTabState createState() => _BaseTabState(_body);
+}
+
+class _BaseTabState extends State<BaseTab> {
+  Widget _body;
+  _BaseTabState(final Widget body) {
+    _body = body;
+  }
 
   @override
   Widget build(BuildContext context) {
-
     Widget _buildCustomScrollView() => CustomScrollView(
       slivers: <Widget>[
            SliverAppBar(
@@ -19,15 +33,20 @@ class HomeTab extends StatelessWidget {
                child: Image.asset("images/logo.png",fit: BoxFit.fitWidth,width: 150)
              ),
              centerTitle: true,
-             
-           )
+           ),
+          SliverFillRemaining(child: _body)
          ]
     );
 
-    return Stack(
+    return 
+    Scaffold(
+      drawer: CustomDrawer(),
+      body: Stack(
       children: <Widget>[
-        _buildCustomScrollView()
+        _buildCustomScrollView(),
       ]
+      )
     );
+    
   }
 }

@@ -1,22 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:odisseia/tabs/home_tab.dart';
-import 'package:odisseia/widgets/custom_drawer.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:odisseia/screens/base_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-
-  final _pageController = PageController();
-
+class HomeScreen extends BaseScreen {
   @override
-  Widget build(BuildContext context) {
-    return PageView(
-      controller: _pageController,
-      physics: NeverScrollableScrollPhysics(),
-      children: <Widget>[
-        Scaffold(
-          body: HomeTab(),
-          drawer: CustomDrawer(),
-        )
-      ],
-    );
+  Widget getBody(){
+    return Text("Em construção");
   }
+
 }
