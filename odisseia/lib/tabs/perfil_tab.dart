@@ -41,7 +41,11 @@ Widget _usuario() => Column(
           padding: EdgeInsets.only(top: 15, bottom: 15),
           child: Text(
             "Arthur Pimenta Braga",
-            style: TextStyle(color: Colors.black, fontSize: 20),
+            style: TextStyle(
+              color: Colors.black, 
+              fontSize: 20,
+              fontFamily: 'DalekPinpointBold'
+              ),
           ),
         ),
       ],
@@ -55,10 +59,19 @@ Widget _level() => LinearPercentIndicator(
       progressColor: Color.fromARGB(255, 255, 124, 64),
       center: new Text(
         "20%",
-        style: TextStyle(fontSize: 10),
+        style: TextStyle(
+          fontSize: 10,
+          fontFamily: 'Montserrat-Light',
+          ),
       ),
-      leading: Text("Lvl1"),
-      trailing: Text("Lvl2"),
+      leading: Text(
+        "Lvl1",
+        style: TextStyle(fontFamily: 'DalekPinpointBold'),
+        ),
+      trailing: Text(
+        "Lvl1",
+        style: TextStyle(fontFamily: 'DalekPinpointBold'),
+        ),
     );
 
 Widget _buttons() => Padding(

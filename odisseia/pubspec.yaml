@@ -51,6 +51,7 @@ flutter:
     - images/scroll.png
     - images/helmet.png
     - images/meandro_grego.png
+    - images/pi.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -79,5 +80,17 @@ flutter:
     - family: Augustus
       fonts:
         - asset: fonts/AUGUSTUS.TTF
+
+    - family: DalekPinpointBold
+      fonts:
+        - asset: fonts/DalekPinpointBold.ttf
+
+    - family: Montserrat-Light
+      fonts:
+        - asset: fonts/Montserrat-Light.ttf
+
+    - family: helmet_font   #Icone invisivel (Corrigir)
+      fonts:
+        - asset: fonts/helmet_font.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -89,7 +89,7 @@ Widget _form(BuildContext context) => Container(
                           const BorderSide(color: Colors.white, width: 1.5),
                     ),
                     prefixIcon:
-                        Icon(Icons.account_balance, color: Colors.white),
+                      Icon(const IconData(0xe900, fontFamily: 'helmet_font'), color: Colors.white,),
                     labelText: 'LOGIN',
                     labelStyle: TextStyle(color: Colors.white, fontSize: 14))),
           ),
