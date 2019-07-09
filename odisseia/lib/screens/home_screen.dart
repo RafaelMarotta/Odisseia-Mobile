@@ -30,7 +30,7 @@ class HomeScreen extends BaseScreen {
           ),
         ),
         body: TabBarView(
-          children: <Widget>[_getTurmas(), Text("Page 2")],
+          children: <Widget>[_getTurmas(), _getMissoes()],
         ),
       ),
     ));
@@ -59,6 +59,20 @@ Widget _getTurmas() {
       CardMateria(),
       CardMateria(),
       CardMateria()
+    ],
+  );
+}
+
+Widget _getMissoes() {
+  return Column (
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Text("Tutu DESEMBOLA O CARD DE MISSÕES"),
+      Text("Tutu DESEMBOLA O CARD DE MISSÕES"),
+      Text("Tutu DESEMBOLA O CARD DE MISSÕES"),
+      Text("Tutu DESEMBOLA O CARD DE MISSÕES"),
+      Text("Tutu DESEMBOLA O CARD DE MISSÕES"),
+      Text("Tutu DESEMBOLA O CARD DE MISSÕES"),
     ],
   );
 }
