@@ -89,8 +89,8 @@ flutter:
       fonts:
         - asset: fonts/Montserrat-Light.ttf
 
-    - family: helmet_font   #Icone invisivel (Corrigir)
-      fonts:
-        - asset: fonts/helmet_font.ttf
+    #- family: helmet_font   #Icone invisivel (Corrigir)
+     # fonts:
+      #  - asset: fonts/helmet_font.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

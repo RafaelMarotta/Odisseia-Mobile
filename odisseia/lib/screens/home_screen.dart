@@ -1,47 +1,65 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:odisseia/screens/base_screen.dart';
+import 'package:odisseia/widgets/card_materia.dart';
 
 class HomeScreen extends BaseScreen {
   @override
   Widget getBody() {
-    return Container(
-      margin: EdgeInsets.only(left: 20, right: 20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _cardMateria(),
-
-        ],
+    return MaterialApp(
+        home: DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40),
+          child: AppBar(
+            elevation: 10,
+            titleSpacing: 15,
+            backgroundColor: Color.fromARGB(255, 255, 124, 64),
+            title: Container(
+              margin: EdgeInsets.only(bottom: 15),
+              child:TabBar(
+              indicatorPadding: EdgeInsets.only(bottom: -18),
+              indicatorWeight: 3,
+              indicatorColor: Color.fromARGB(255, 255, 124, 64),
+              tabs: <Widget>[
+                _getTab("Matérias"),
+                _getTab("Não Concluídas")
+              ],
+            )),
+          ),
+        ),
+        body: TabBarView(
+          children: <Widget>[_getTurmas(), Text("Page 2")],
+        ),
       ),
-    );
+    ));
   }
 }
 
-Widget _cardMateria() => Card(
-      color: Color.fromARGB(255, 255, 124, 64),
-      child: ListTile(
-        leading: Image.asset(
-          "images/pi.png",
-          fit: BoxFit.scaleDown,
-          width: 50,
-        ),
-        title: Text(
-          "Matemática",
-          style: TextStyle(
-              color: Color.fromARGB(255, 16, 6, 17),
-              fontFamily: 'DalekPinpointBold',
-              fontSize: 18),
-        ),
-        subtitle: Text(
-          "Missões abertas: 1",
-          style: TextStyle(
-            fontFamily: 'DalekPinpointBold',
-            fontSize: 15,
-          ),
-        ),
-      ),
-    );
+Widget _getTab(String text) {
+  return Text(
+    text,
+    textAlign: TextAlign.center,
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: 15.0,
+      fontFamily: 'DalekPinpointBold',
+    ),
+  );
+}
 
-
+Widget _getTurmas() {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      CardMateria(),
+      CardMateria(),
+      CardMateria(),
+      CardMateria(),
+      CardMateria(),
+      CardMateria()
+    ],
+  );
+}
 //Widget _panelMission() => ExpansionPanelList();

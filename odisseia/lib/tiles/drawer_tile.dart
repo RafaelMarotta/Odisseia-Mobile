@@ -35,7 +35,8 @@ class DrawerTile extends StatelessWidget {
                 textAlign: TextAlign.right,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 18.0
+                  fontSize: 22.0,
+                  fontFamily: 'DalekPinpointBold'
                 ),
                 )
             ],

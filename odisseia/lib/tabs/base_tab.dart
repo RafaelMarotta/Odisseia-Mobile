@@ -25,7 +25,8 @@ class _BaseTabState extends State<BaseTab> {
            SliverAppBar(
              expandedHeight: 70,
              floating: true,
-             snap: true,
+             snap: false,
+             pinned: true,
              backgroundColor: Color.fromARGB(255, 255, 124, 64),
              elevation: 0.0,
              title: new Container(
