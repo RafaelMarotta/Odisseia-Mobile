@@ -35,8 +35,8 @@ class CustomDrawer extends StatelessWidget {
                 ),
               )
             ),
-            DrawerTile("images/helmet.png","MISSÕES",HomeScreen()),
-            DrawerTile("images/scroll.png","EVOLUÇÃO",PerfilScreen())
+            DrawerTile("images/helmet.png","PERFIL",PerfilScreen()),
+            DrawerTile("images/scroll.png","MISSÕES",HomeScreen())
           ],
         );
 

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:odisseia/screens/base_screen.dart';
 import 'package:odisseia/widgets/card_materia.dart';
+import 'package:odisseia/widgets/card_missao.dart';
 
 class HomeScreen extends BaseScreen {
   @override
@@ -67,12 +68,8 @@ Widget _getMissoes() {
   return Column (
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      Text("Tutu DESEMBOLA O CARD DE MISSÕES"),
-      Text("Tutu DESEMBOLA O CARD DE MISSÕES"),
-      Text("Tutu DESEMBOLA O CARD DE MISSÕES"),
-      Text("Tutu DESEMBOLA O CARD DE MISSÕES"),
-      Text("Tutu DESEMBOLA O CARD DE MISSÕES"),
-      Text("Tutu DESEMBOLA O CARD DE MISSÕES"),
+      CardMissao(),
+      CardMissao()
     ],
   );
 }
