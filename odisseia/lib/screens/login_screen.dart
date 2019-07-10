@@ -108,7 +108,7 @@ Widget _form(BuildContext context) => Container(
           RaisedButton(
             color: Colors.white,
             textColor: Color.fromARGB(255, 255, 124, 64),
-            padding: EdgeInsets.only(left: 137, right: 137),
+            padding: EdgeInsets.only(left: 134, right: 134),
             child: Text(
               "ENTRAR",
               style: TextStyle(fontSize: 14),

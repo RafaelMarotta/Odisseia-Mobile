@@ -8,6 +8,7 @@ class HomeScreen extends BaseScreen {
   @override
   Widget getBody() {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         home: DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -68,6 +69,7 @@ Widget _getMissoes() {
   return Column (
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
+      CardMissao(),
       CardMissao(),
       CardMissao()
     ],

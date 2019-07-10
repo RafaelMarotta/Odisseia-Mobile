@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:odisseia/widgets/alert_not_implement_yet.dart';
 
-class CardMissao extends StatelessWidget {
-  const CardMissao({Key key}) : super(key: key);
+class CardMissao extends StatefulWidget {
+  CardMissao({Key key}) : super(key: key);
 
+  _CardMissaoState createState() => _CardMissaoState();
+}
+
+class _CardMissaoState extends State<CardMissao> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,7 +23,7 @@ class CardMissao extends StatelessWidget {
                 color: Color.fromARGB(255, 16, 6, 17),
                 margin: EdgeInsets.only(right: 10),
               ),
-              _informacoes(),
+              _informacoes(context),
             ],
           )),
     );
@@ -42,23 +47,21 @@ Widget _prazo() {
             "Para:",
             style: TextStyle(
                 color: Color.fromARGB(255, 16, 6, 17),
-                fontFamily: 'DalekPinpointBold',
-                fontSize: 10),
+                fontSize: 12),
           ),
         ),
         Text(
           "15 de Setembro",
           style: TextStyle(
               color: Color.fromARGB(255, 16, 6, 17),
-              fontFamily: 'DalekPinpointBold',
-              fontSize: 10),
+              fontSize: 12),
         ),
       ],
     ),
   );
 }
 
-Widget _informacoes() {
+Widget _informacoes(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
@@ -67,27 +70,18 @@ Widget _informacoes() {
         child: Text(
           "Lista de atividades para prova intermediária.",
           style: TextStyle(
-              color: Color.fromARGB(255, 16, 6, 17),
-              fontFamily: 'DalekPinpointBold',
+              color: Colors.white,
               fontSize: 12),
         ),
       ),
       Padding(
         padding: EdgeInsets.only(top: 20),
         child: Text(
-          "Na prova irá cair 2 questões de retas e 4 de matematica básica.",
+          "Na prova irá cair 2 questões de retas e 4 de matematica básica.\nAmbas as matérias se encontram nas páginas 63, 64 e 65",
           style: TextStyle(
-              color: Color.fromARGB(255, 16, 6, 17),
-              fontFamily: 'DalekPinpointBold',
-              fontSize: 8.5),
+              color: Colors.white,
+              fontSize: 8.9),
         ),
-      ),
-      Text(
-        "Ambas as matérias se encontram nas páginas 63, 64 e 65",
-        style: TextStyle(
-            color: Color.fromARGB(255, 16, 6, 17),
-            fontFamily: 'DalekPinpointBold',
-            fontSize: 8.5),
       ),
       Padding(
         padding: EdgeInsets.only(top: 15),
@@ -98,7 +92,7 @@ Widget _informacoes() {
             "ATACAR",
             style: TextStyle(fontFamily: 'DalekPinpointBold', fontSize: 15),
           ),
-          onPressed: () {},
+          onPressed: () {AlertNotImplementYet().build(context);},
         ),
       ),
     ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:odisseia/widgets/alert_not_implement_yet.dart';
 
 class CardMateria extends StatelessWidget {
   const CardMateria({Key key}) : super(key: key);
@@ -8,7 +9,7 @@ class CardMateria extends StatelessWidget {
     return Card(
       color: Color.fromARGB(255, 255, 124, 64),
       child: ListTile(
-        onTap: (){},
+        onTap: (){AlertNotImplementYet().build(context);},
         leading: Image.asset(
           "images/pi.png",
           fit: BoxFit.scaleDown,
