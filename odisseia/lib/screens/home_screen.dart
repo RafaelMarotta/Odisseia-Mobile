@@ -4,6 +4,7 @@ import 'package:odisseia/screens/base_screen.dart';
 import 'package:odisseia/widgets/card_materia.dart';
 import 'package:odisseia/widgets/card_missao.dart';
 
+
 class HomeScreen extends BaseScreen {
   @override
   Widget getBody() {
@@ -52,8 +53,7 @@ Widget _getTab(String text) {
 }
 
 Widget _getTurmas() {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
+  return ListView(  //Criar uma lista para os cards, e exibilos aqui em uma ListView.builder
     children: <Widget>[
       CardMateria(),
       CardMateria(),
@@ -65,10 +65,14 @@ Widget _getTurmas() {
   );
 }
 
+
+
 Widget _getMissoes() {
-  return Column (
-    mainAxisAlignment: MainAxisAlignment.center,
+  return ListView(  //Criar uma lista para os cards, e exibilos aqui em uma ListView.builder
     children: <Widget>[
+      CardMissao(),
+      CardMissao(),
+      CardMissao(),
       CardMissao(),
       CardMissao(),
       CardMissao()
