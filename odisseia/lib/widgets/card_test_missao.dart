@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Card_Test extends StatefulWidget {
+class CardTest extends StatefulWidget {
   @override
-  _Card_TestState createState() => _Card_TestState();
+  _CardTestState createState() => _CardTestState();
 }
 
-class _Card_TestState extends State<Card_Test> {
+class _CardTestState extends State<CardTest> {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(

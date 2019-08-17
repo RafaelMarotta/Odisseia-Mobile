@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:odisseia/widgets/card_materia.dart';
 
-class Missao_Screen extends StatefulWidget {
+class MissaoScreen extends StatefulWidget {
   @override
-  _Missao_ScreenState createState() => _Missao_ScreenState();
+  _MissaoScreenState createState() => _MissaoScreenState();
 }
 
-class _Missao_ScreenState extends State<Missao_Screen> {
+class _MissaoScreenState extends State<MissaoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

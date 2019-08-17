@@ -33,8 +33,7 @@ class _LoginState extends State<LoginScreen> {
           ),
         ));
   }
-}
-
+  
 Widget _options() => Padding(
       padding: EdgeInsets.only(top: 80.0, bottom: 10),
       child: Row(
@@ -123,3 +122,5 @@ Widget _form(BuildContext context) => Container(
         ],
       ),
     );
+
+}

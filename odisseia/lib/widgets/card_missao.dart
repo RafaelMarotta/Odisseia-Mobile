@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:odisseia/screens/login_screen.dart';
-import 'package:odisseia/tiles/drawer_tile.dart';
-import 'package:odisseia/widgets/alert_not_implement_yet.dart';
 
 class CardMissao extends StatefulWidget {
   CardMissao({Key key}) : super(key: key);
