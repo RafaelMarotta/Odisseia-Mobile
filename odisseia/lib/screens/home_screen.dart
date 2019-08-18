@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:odisseia/DTO/card_missaoDTO.dart';
 import 'package:odisseia/screens/base_screen.dart';
 import 'package:odisseia/widgets/card_materia.dart';
 import 'package:odisseia/widgets/card_missao.dart';
@@ -68,13 +69,8 @@ Widget _getTurmas() {
 
 
 Widget _getMissoes() {
-  return ListView(  //Criar uma lista para os cards, e exibilos aqui em uma ListView.builder
+  return ListView(  
     children: <Widget>[
-      CardMissao(),
-      CardMissao(),
-      CardMissao(),
-      CardMissao(),
-      CardMissao(),
       CardMissao()
     ],
   );

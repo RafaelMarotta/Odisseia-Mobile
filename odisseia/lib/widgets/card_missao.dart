@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:odisseia/screens/login_screen.dart';
 import 'package:odisseia/tiles/drawer_tile.dart';
 import 'package:odisseia/widgets/alert_not_implement_yet.dart';
+import 'package:odisseia/DTO/card_missaoDTO.dart';
 
 class CardMissao extends StatefulWidget {
-  CardMissao({Key key}) : super(key: key);
+  CardMissaoDTO cardMissaoDTO;
+  CardMissao(this.cardMissaoDTO);
 
-  _CardMissaoState createState() => _CardMissaoState();
+  _CardMissaoState createState() => _CardMissaoState(cardMissaoDTO);
 }
 
 class _CardMissaoState extends State<CardMissao> {
+  
+  CardMissaoDTO cardMissaoDTO;
+  _CardMissaoState(CardMissaoDTO cardMissaoDTO){
+    this.cardMissaoDTO = cardMissaoDTO;
+  }
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(
