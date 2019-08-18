@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:odisseia/tiles/drawer_tile.dart';
 
 class CardMissao extends StatefulWidget {
-  CardMissao({Key key}) : super(key: key);
+  CardMissaoDTO cardMissaoDTO;
+  CardMissao(this.cardMissaoDTO);
 
-  _CardMissaoState createState() => _CardMissaoState();
+  _CardMissaoState createState() => _CardMissaoState(cardMissaoDTO);
 }
 
 class _CardMissaoState extends State<CardMissao> {
+  
+  CardMissaoDTO cardMissaoDTO;
+  _CardMissaoState(CardMissaoDTO cardMissaoDTO){
+    this.cardMissaoDTO = cardMissaoDTO;
+  }
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(
