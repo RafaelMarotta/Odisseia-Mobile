@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:odisseia/facade/usuario_facade.dart';
+import 'package:odisseia/models/UsuarioLoginDTO.dart';
 import 'package:odisseia/screens/home_screen.dart';
+import 'package:odisseia/utils/flutter_utils.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -7,6 +10,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginState extends State<LoginScreen> {
+  UsuarioFacade usuarioFacade = UsuarioFacade();
+  TextEditingController _loginController = TextEditingController();
+  TextEditingController _senhaController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,94 +40,103 @@ class _LoginState extends State<LoginScreen> {
           ),
         ));
   }
-  
-Widget _options() => Padding(
-      padding: EdgeInsets.only(top: 80.0, bottom: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(right: 10, left: 10),
-              child: FlatButton(
-                color: Colors.white,
-                child: Text(
-                  "ALUNO",
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 124, 64), fontSize: 14),
-                ),
-                onPressed: () {},
-              )),
-          Padding(
-              padding: EdgeInsets.only(right: 10, left: 10),
-              child: FlatButton(
-                child: Text(
-                  "PROFESSOR",
-                  style: TextStyle(color: Colors.white, fontSize: 14),
-                ),
-                onPressed: () {},
-              )),
-          Padding(
-              padding: EdgeInsets.only(right: 10, left: 10),
-              child: FlatButton(
-                child: Text(
-                  "ESCOLA",
-                  style: TextStyle(color: Colors.white, fontSize: 14),
-                ),
-                onPressed: () {},
-              )),
-        ],
-      ),
-    );
 
-Widget _form(BuildContext context) => Container(
-      width: 328,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(bottom: 5),
-            child: TextField(
-                //style: TextStyle(height: 0),
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.white, width: 1.5),
-                    ),
-                    prefixIcon:
-                      Icon(const IconData(0xe900, fontFamily: 'helmet_font'), color: Colors.white,),
-                    labelText: 'LOGIN',
-                    labelStyle: TextStyle(color: Colors.white, fontSize: 14))),
-          ),
-          TextField(
-            //style: TextStyle(height: 0),
-            keyboardType: TextInputType.text,
-            obscureText: true,
-            decoration: InputDecoration(
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.white, width: 1.5),
-                ),
-                prefixIcon: Icon(Icons.keyboard_capslock, color: Colors.white),
-                labelText: 'PASSWORD',
-                labelStyle: TextStyle(color: Colors.white, fontSize: 14)),
-          ),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Color.fromARGB(255, 255, 124, 64),
-            padding: EdgeInsets.only(left: 134, right: 134),
-            child: Text(
-              "ENTRAR",
-              style: TextStyle(fontSize: 14),
+  Widget _options() => Padding(
+        padding: EdgeInsets.only(top: 80.0, bottom: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+                padding: EdgeInsets.only(right: 10, left: 10),
+                child: FlatButton(
+                  color: Colors.white,
+                  child: Text(
+                    "ALUNO",
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 255, 124, 64), fontSize: 14),
+                  ),
+                  onPressed: () {},
+                )),
+            Padding(
+                padding: EdgeInsets.only(right: 10, left: 10),
+                child: FlatButton(
+                  child: Text(
+                    "PROFESSOR",
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  ),
+                  onPressed: () {},
+                )),
+            Padding(
+                padding: EdgeInsets.only(right: 10, left: 10),
+                child: FlatButton(
+                  child: Text(
+                    "ESCOLA",
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  ),
+                  onPressed: () {},
+                )),
+          ],
+        ),
+      );
+
+  Widget _form(BuildContext context) => Container(
+        width: 328,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(bottom: 5),
+              child: TextField(
+                  controller: _loginController,
+                  //style: TextStyle(height: 0),
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.white, width: 1.5),
+                      ),
+                      prefixIcon: Icon(
+                        const IconData(0xe900, fontFamily: 'helmet_font'),
+                        color: Colors.white,
+                      ),
+                      labelText: 'LOGIN',
+                      labelStyle:
+                          TextStyle(color: Colors.white, fontSize: 14))),
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
-              );
-            },
-          )
-        ],
-      ),
-    );
-
+            TextField(
+              controller: _senhaController,
+              //style: TextStyle(height: 0),
+              keyboardType: TextInputType.text,
+              obscureText: true,
+              decoration: InputDecoration(
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.white, width: 1.5),
+                  ),
+                  prefixIcon:
+                      Icon(Icons.keyboard_capslock, color: Colors.white),
+                  labelText: 'PASSWORD',
+                  labelStyle: TextStyle(color: Colors.white, fontSize: 14)),
+            ),
+            RaisedButton(
+              color: Colors.white,
+              textColor: Color.fromARGB(255, 255, 124, 64),
+              padding: EdgeInsets.only(left: 134, right: 134),
+              child: Text(
+                "ENTRAR",
+                style: TextStyle(fontSize: 14),
+              ),
+              onPressed: () async {
+                UsuarioLoginDTO loginDTO = UsuarioLoginDTO(
+                    _loginController.text, _senhaController.text);
+                if (await usuarioFacade.login(loginDTO)) {
+                  FlutterUtils.goToScreen(context, HomeScreen());
+                } else {
+                  
+                }
+              },
+            )
+          ],
+        ),
+      );
 }

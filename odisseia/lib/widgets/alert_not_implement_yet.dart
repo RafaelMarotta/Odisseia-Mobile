@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AlertNotImplementYet extends StatelessWidget {
+
+  String content() => "Essa funcionalidade está sendo implementada!";
+  String title() => "Funcionalidade ainda não implementada !";
+  
+
   @override
   Widget build(BuildContext context) {
       showDialog(
@@ -13,8 +18,8 @@ class AlertNotImplementYet extends StatelessWidget {
   }
 
   _buildAlertDialog(BuildContext context) => AlertDialog(
-        title: Text("Funcionalidade ainda não implementada !"),
-        content: Text("Essa funcionalidade está sendo implementada!"),
+        title: Text(title()),
+        content: Text(content()),
         actions: <Widget>[
           FlatButton(
             child: Text("Ok"),
