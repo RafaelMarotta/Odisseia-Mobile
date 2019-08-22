@@ -8,17 +8,20 @@ part of 'UsuarioDTO.dart';
 
 UsuarioDTO _$UsuarioDTOFromJson(Map<String, dynamic> json) {
   return UsuarioDTO(
+    json['id'] as int,
     json['login'] as String,
     json['senha'] as String,
-  )
-    ..id = json['id'] as int
-    ..nome = json['nome'] as String
-    ..tipo = json['tipo'] as int;
+    json['tipo'] as int,
+    alunoId: json['alunoId'] as int,
+    professorId: json['professorId'] as int,
+  )..nome = json['nome'] as String;
 }
 
 Map<String, dynamic> _$UsuarioDTOToJson(UsuarioDTO instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'alunoId': instance.alunoId,
+      'professorId': instance.professorId,
       'nome': instance.nome,
       'login': instance.login,
       'senha': instance.senha,

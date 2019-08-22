@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:odisseia/tiles/drawer_tile.dart';
+import 'package:odisseia/models/CardMissaoDTO.dart';
 
-class CardMissao extends StatefulWidget {
-  CardMissaoDTO cardMissaoDTO;
-  CardMissao(this.cardMissaoDTO);
+class CardMissao extends StatelessWidget {
 
-  _CardMissaoState createState() => _CardMissaoState(cardMissaoDTO);
-}
+  CardMissaoDTO _cardMissaoDTO;
 
-class _CardMissaoState extends State<CardMissao> {
-  
-  CardMissaoDTO cardMissaoDTO;
-  _CardMissaoState(CardMissaoDTO cardMissaoDTO){
-    this.cardMissaoDTO = cardMissaoDTO;
-  }
-  
+  CardMissao(this._cardMissaoDTO);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -36,9 +28,8 @@ class _CardMissaoState extends State<CardMissao> {
       ),
     );
   }
-}
 
-Widget _prazo() {
+  Widget _prazo() {
   return Padding(
     padding: EdgeInsets.only(left: 10, right: 10),
     child: Column(
@@ -58,7 +49,7 @@ Widget _prazo() {
           ),
         ),
         Text(
-          "15 de Setembro",
+          _cardMissaoDTO.dataEntrega.toString(),
           style: TextStyle(color: Color.fromARGB(255, 16, 6, 17), fontSize: 12),
         ),
       ],
@@ -76,7 +67,7 @@ Widget _informacoes(BuildContext context) {
           child: Container(
             width: 250,
             child: Text(
-              "Lista de atividades para prova intermediária.",
+              _cardMissaoDTO.titulo,
               style: TextStyle(color: Colors.white, fontSize: 12),
             ),
           ),
@@ -84,7 +75,7 @@ Widget _informacoes(BuildContext context) {
         Padding(
           padding: EdgeInsets.only(top: 20),
           child: Text(
-            "Na prova irá cair 2 questões de retas e 4 de matematica básica.\nAmbas as matérias se encontram nas páginas 63, 64 e 65",
+            _cardMissaoDTO.descricao,
             style: TextStyle(color: Colors.white, fontSize: 8.9),
           ),
         ),
@@ -108,4 +99,6 @@ Widget _informacoes(BuildContext context) {
       ],
     ),
   );
+}
+
 }

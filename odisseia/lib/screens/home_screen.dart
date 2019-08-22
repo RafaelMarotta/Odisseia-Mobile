@@ -1,12 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:odisseia/DTO/card_missaoDTO.dart';
+import 'package:odisseia/facade/missao_facade.dart';
+import 'package:odisseia/facade/usuario_facade.dart';
+import 'package:odisseia/models/AlunoDTO.dart';
+import 'package:odisseia/models/CardMissaoDTO.dart';
 import 'package:odisseia/screens/base_screen.dart';
 import 'package:odisseia/widgets/card_materia.dart';
 import 'package:odisseia/widgets/card_missao.dart';
 
 
 class HomeScreen extends BaseScreen {
+  UsuarioFacade usuarioFacade = UsuarioFacade();
+  MissaoFacade missaoFacade = MissaoFacade();
+
   @override
   Widget getBody() {
     return MaterialApp(
@@ -39,9 +45,8 @@ class HomeScreen extends BaseScreen {
       ),
     ));
   }
-}
 
-Widget _getTab(String text) {
+  Widget _getTab(String text) {
   return Text(
     text,
     textAlign: TextAlign.center,
@@ -61,18 +66,30 @@ Widget _getTurmas() {
       CardMateria(),
       CardMateria(),
       CardMateria(),
-      CardMateria()
+      CardMateria(),
     ],
   );
 }
-
-
-
-Widget _getMissoes() {
-  return ListView(  
-    children: <Widget>[
-      CardMissao()
-    ],
+Widget _getMissoes() => FutureBuilder<List<CardMissaoDTO>> (
+    builder: (context,snapshot){
+      if(snapshot.connectionState == ConnectionState.done && snapshot.data != null) {
+      return ListView.builder(
+        itemCount: snapshot.data.length,
+        itemBuilder: (context, index) {
+          CardMissaoDTO dto = snapshot.data[index];
+          return Column(
+            children: <Widget>[
+              CardMissao(dto)
+              // Widget to display the list of project
+            ],
+          );
+        },
+      );
+    }
+      return Text("Carregando ...");
+    },
+    future: missaoFacade.findListCardMissaoDTOByAlunoDTO()
   );
+
 }
 //Widget _panelMission() => ExpansionPanelList();
