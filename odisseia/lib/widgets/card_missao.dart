@@ -3,7 +3,7 @@ import 'package:odisseia/models/CardMissaoDTO.dart';
 
 class CardMissao extends StatelessWidget {
 
-  CardMissaoDTO _cardMissaoDTO;
+  final CardMissaoDTO _cardMissaoDTO;
 
   CardMissao(this._cardMissaoDTO);
 

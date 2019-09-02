@@ -1,5 +1,5 @@
 class ApiUtils{
-static const _url = "http://192.168.0.16:6001/api";
+static const _url = "http://18.217.240.189:6001/api";
 
 //Funcionalidades
 

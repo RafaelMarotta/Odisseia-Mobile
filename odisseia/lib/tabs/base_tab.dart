@@ -3,11 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:odisseia/widgets/custom_drawer.dart';
 
 class BaseTab extends StatefulWidget {
-  Widget _body;
+  final Widget _body;
 
-  BaseTab(final Widget body,{Key key} ) : super(key: key) {
-    _body = body;
-  }
+  BaseTab(this._body,{Key key} );
 
   _BaseTabState createState() => _BaseTabState(_body);
 }
