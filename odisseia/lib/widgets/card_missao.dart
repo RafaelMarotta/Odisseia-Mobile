@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:odisseia/models/CardMissaoDTO.dart';
+import 'package:odisseia/widgets/alert_onset_of_attack.dart';
 
 class CardMissao extends StatelessWidget {
 
@@ -89,10 +90,7 @@ Widget _informacoes(BuildContext context) {
               style: TextStyle(fontFamily: 'DalekPinpointBold', fontSize: 15),
             ),
             onPressed: () {
-              // Navigator.push(
-              // context,
-              // MaterialPageRoute(builder: (context) => TestMission()),
-              // );
+              Alertonsetofattack().build(context);
             },
           ),
         ),
