@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:odisseia/utils/custom_date_time_converter.dart';
 
 part 'CardMissaoDTO.g.dart';
 

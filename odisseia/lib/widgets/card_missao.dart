@@ -4,7 +4,7 @@ import 'package:odisseia/widgets/alert_onset_of_attack.dart';
 
 class CardMissao extends StatelessWidget {
 
-  final CardMissaoDTO _cardMissaoDTO;
+  CardMissaoDTO _cardMissaoDTO;
 
   CardMissao(this._cardMissaoDTO);
 
