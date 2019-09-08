@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:odisseia/excpetion/not_found_excpetion.dart';
+import 'package:odisseia/exception/not_found_exception.dart';
 
 class Http {
   static Future<Object> get(String url) async =>
@@ -9,7 +9,7 @@ class Http {
           return response.body;
         }
         if (response.statusCode == 404) {
-          throw NotFoundExcpetion("Não foram encontrados resultados!");
+          throw NotFoundException("Não foram encontrados resultados!");
         }
         return null;
       });
@@ -24,7 +24,7 @@ class Http {
         }
 
         if (response.statusCode == 404) {
-          throw NotFoundExcpetion("Não foram encontrados resultados!");
+          throw NotFoundException("Não foram encontrados resultados!");
         }
 
         return null;

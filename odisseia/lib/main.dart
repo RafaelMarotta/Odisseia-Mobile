@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odisseia/screens/login_screen.dart';
+import 'package:odisseia/view/screens/login_screen.dart';
 
 void main(){
 runApp(MaterialApp(
