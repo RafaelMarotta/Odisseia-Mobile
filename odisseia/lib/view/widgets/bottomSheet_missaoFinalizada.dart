@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:odisseia/utils/flutter_utils.dart';
+import 'package:odisseia/view/screens/home_screen.dart';
 
 class BottomSheetMissaoFinalizada extends StatelessWidget {
   @override
@@ -47,7 +49,7 @@ class BottomSheetMissaoFinalizada extends StatelessWidget {
                           style: BorderStyle.solid,
                           width: 1.5,
                         ),
-                        onPressed: () {Navigator.of(context).pop();},
+                        onPressed: () {FlutterUtils.goToScreen(context,HomeScreen());},
                       ),
                     ),
                   ],
@@ -56,5 +58,6 @@ class BottomSheetMissaoFinalizada extends StatelessWidget {
             ),
           );
         });
+     return null;
   }
 }

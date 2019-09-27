@@ -67,7 +67,20 @@ class QuestaoListViewState extends State<QuestaoListView> implements IQuestaoLis
   }
 
   Widget _getAlternativa(AlternativaDTO alternativaDTO){
-    return RadioListTile(
+    return Container(
+      margin: EdgeInsets.only(top: 15),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+            new BoxShadow(
+              color: Colors.black54,
+              offset: new Offset(0.5, 0.5),
+              blurRadius: 1.0,
+              spreadRadius: 1.0
+            )
+          ],
+        ),
+      child:  RadioListTile(  
       title: Text(
         alternativaDTO.texto,
         style: TextStyle(color: Colors.black, fontSize: 13),
@@ -79,8 +92,8 @@ class QuestaoListViewState extends State<QuestaoListView> implements IQuestaoLis
          selectedValue = value;
          resolucaoDTO.fkAlternativa = value;
         });
-      },
-    );
+      }, 
+    ));
   }
 
   void nextQuestion() {
