@@ -8,7 +8,6 @@ part of 'MissaoResolucaoDTO.dart';
 
 MissaoResolucaoDTO _$MissaoResolucaoDTOFromJson(Map<String, dynamic> json) {
   return MissaoResolucaoDTO(
-    id: json['id'] as int,
     fkMissaoAluno: json['fkMissaoAluno'] as int,
     fkQuestao: json['fkQuestao'] as int,
     fkAlternativa: json['fkAlternativa'] as int,
@@ -17,7 +16,6 @@ MissaoResolucaoDTO _$MissaoResolucaoDTOFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$MissaoResolucaoDTOToJson(MissaoResolucaoDTO instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'fkMissaoAluno': instance.fkMissaoAluno,
       'fkQuestao': instance.fkQuestao,
       'fkAlternativa': instance.fkAlternativa,

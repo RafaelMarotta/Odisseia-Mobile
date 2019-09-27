@@ -3,7 +3,7 @@ import 'package:odisseia/data/model/QuestaoPaginationDTO.dart';
 import 'package:odisseia/data/repository/questao_repository.dart';
 import 'package:odisseia/presentation/Contracts/pagination_contract.dart';
 
-abstract class IQuestaoListViewContract{
+abstract class IQuestaoListViewContract {
   void onLoadQuestaoPaginationComplete(QuestaoPaginationDTO questaoPaginationDTO);
   void onLoadQuestaoPaginationError();
 }

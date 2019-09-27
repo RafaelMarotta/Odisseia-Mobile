@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:odisseia/presentation/Contracts/pagination_contract.dart';
+import 'package:odisseia/data/model/MissaoResolucaoDTO.dart';
+import 'package:odisseia/presentation/missao_resolution_presenter.dart';
 import 'package:odisseia/view/listViews/questao_list_view.dart';
 
 class MissaoScreen extends StatefulWidget {
@@ -12,14 +13,25 @@ class MissaoScreen extends StatefulWidget {
 }
 
 class _MissaoScreenState extends State<MissaoScreen>
-    implements IPaginationContract {
+    implements IMissaoResolucaoViewContract {
   final int missaoId;
   final int missaoAlunoId;
   bool _hasNextPage = true;
   bool _hasPreviousPage = false;
 
+  MissaoResolucaoPresenter _presenter;
+
+  @override
+  void initState() { 
+    super.initState();
+  }
+
+  List<MissaoResolucaoDTO> listResolucaoDTO = new List<MissaoResolucaoDTO>();
+
   final GlobalKey<QuestaoListViewState> _key = GlobalKey();
-  _MissaoScreenState(this.missaoId,this.missaoAlunoId);
+  _MissaoScreenState(this.missaoId,this.missaoAlunoId) {
+    _presenter = MissaoResolucaoPresenter(this);
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +54,7 @@ class _MissaoScreenState extends State<MissaoScreen>
               ],
             ),
           ),
-          _getButtonPreviousQuestion(),
+          _hasPreviousPage ? _getButtonPreviousQuestion() : Text(""),
           _hasNextPage ? _getButtonNextQuestion() : _getButtonFinalizar(),
         ],
       ),
@@ -56,8 +68,12 @@ class _MissaoScreenState extends State<MissaoScreen>
           child: FloatingActionButton.extended(
             disabledElevation: 10,
             heroTag: "btnVoltar",
-            onPressed: () =>
-                _hasPreviousPage ? _key.currentState.previousQuestion() : {},
+            onPressed: () {
+              if(_hasPreviousPage) { 
+                listResolucaoDTO.removeLast();
+                _key.currentState.previousQuestion() ;
+              }
+            },
             label: Text('Voltar'),
             //icon: Icon(Icons.keyboard_arrow_left),
             backgroundColor:
@@ -72,7 +88,10 @@ class _MissaoScreenState extends State<MissaoScreen>
           alignment: Alignment.bottomRight,
           child: FloatingActionButton.extended(
             heroTag: "btnProxima",
-            onPressed: () => _key.currentState.nextQuestion(),
+            onPressed: () {
+              listResolucaoDTO.add(MissaoResolucaoDTO.build(_key.currentState.resolucaoDTO));
+              _key.currentState.nextQuestion();
+            },
             label: Text('Próxima'),
             //icon: Icon(Icons.keyboard_arrow_right),
             backgroundColor: Color.fromARGB(255, 255, 124, 64),
@@ -89,7 +108,10 @@ class _MissaoScreenState extends State<MissaoScreen>
               alignment: Alignment.bottomRight,
               child: FloatingActionButton.extended(
                 heroTag: "btnFinalizar",
-                onPressed: () {},
+                onPressed: () {
+                  listResolucaoDTO.add(MissaoResolucaoDTO.build(_key.currentState.resolucaoDTO));
+                  _presenter.submit(listResolucaoDTO);
+                },
                 label: Text('Finalizar'),
                 icon: Icon(Icons.save),
                 backgroundColor: Color.fromARGB(255, 255, 124, 64),
@@ -111,5 +133,16 @@ class _MissaoScreenState extends State<MissaoScreen>
     setState(() {
       this._hasPreviousPage = hasPreviousPage;
     });
+  }
+
+  @override
+  void onFailFinalizarMissao() {
+    print("deu ruim");
+  }
+
+  @override
+  void onFinalizarMissaoLoadResult(bool result) {
+    //Exibir sucesso
+    print("salvou");
   }
 }

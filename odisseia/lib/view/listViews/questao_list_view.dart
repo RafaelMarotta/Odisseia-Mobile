@@ -35,7 +35,7 @@ class QuestaoListViewState extends State<QuestaoListView> implements IQuestaoLis
   void initState() {
     super.initState();
     _presenter.loadCurrencies(_missaoId,ordem);
-    resolucaoDTO = new MissaoResolucaoDTO(fkMissaoAluno: _missaoAlunoId);
+     resolucaoDTO = new MissaoResolucaoDTO(fkMissaoAluno: _missaoAlunoId);
   }
 
   @override
@@ -81,21 +81,21 @@ class QuestaoListViewState extends State<QuestaoListView> implements IQuestaoLis
   }
 
   void nextQuestion() {
-    setState(() {
       if(currencies.hasNextPage){
-        ordem++;
+        setState(() {
+          ordem++;
         _presenter.loadCurrencies(_missaoId, ordem);
+        });
       }
-    });
   }
 
   void previousQuestion() {
-    setState(() {
      if(currencies.hasPreviousPage) {
+       setState(() {
        ordem --; 
       _presenter.loadCurrencies(_missaoId, ordem);
+       });
      }
-    });
   }
 
   @override
@@ -104,6 +104,7 @@ class QuestaoListViewState extends State<QuestaoListView> implements IQuestaoLis
       currencies = questaoPaginationDTO; 
       selectedValue = currencies.items[0].alternativas[0].id;
       resolucaoDTO.fkQuestao = currencies.items[0].id;
+      resolucaoDTO.fkAlternativa = currencies.items[0].alternativas[0].id;
     });
   }
 
