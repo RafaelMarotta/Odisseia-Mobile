@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:odisseia/presentation/Contracts/pagination_contract.dart';
+import 'package:odisseia/view/listViews/questao_list_view.dart';
 
 class MissaoScreen extends StatefulWidget {
+  final int missaoId;
+  final int missaoAlunoId;
+  MissaoScreen(this.missaoId,this.missaoAlunoId);
+
   @override
-  _MissaoScreenState createState() => _MissaoScreenState();
+  _MissaoScreenState createState() => _MissaoScreenState(this.missaoId,this.missaoAlunoId);
 }
 
-class _MissaoScreenState extends State<MissaoScreen> {
+class _MissaoScreenState extends State<MissaoScreen>
+    implements IPaginationContract {
+  final int missaoId;
+  final int missaoAlunoId;
+  bool _hasNextPage = true;
+  bool _hasPreviousPage = false;
+
+  final GlobalKey<QuestaoListViewState> _key = GlobalKey();
+  _MissaoScreenState(this.missaoId,this.missaoAlunoId);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,117 +37,79 @@ class _MissaoScreenState extends State<MissaoScreen> {
             child: ListView(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(top: 10, left: 10),
-                  child: cardQuestao(),
-                )
+                    padding: EdgeInsets.only(top: 10, left: 10),
+                    child: QuestaoListView(_key, missaoId, this,missaoAlunoId))
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 10, left: 10),
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: FloatingActionButton.extended(
-                onPressed: () {},
-                label: Text('Recuar'),
-                //icon: Icon(Icons.keyboard_arrow_left),
-                backgroundColor: Color.fromARGB(255, 255, 124, 64),
-              ),
-            ),
+          _getButtonPreviousQuestion(),
+          _hasNextPage ? _getButtonNextQuestion() : _getButtonFinalizar(),
+        ],
+      ),
+    );
+  }
+
+  Widget _getButtonPreviousQuestion() => Padding(
+        padding: EdgeInsets.only(bottom: 10, left: 10),
+        child: Align(
+          alignment: Alignment.bottomLeft,
+          child: FloatingActionButton.extended(
+            disabledElevation: 10,
+            heroTag: "btnVoltar",
+            onPressed: () =>
+                _hasPreviousPage ? _key.currentState.previousQuestion() : {},
+            label: Text('Voltar'),
+            //icon: Icon(Icons.keyboard_arrow_left),
+            backgroundColor:
+                Color.fromARGB(255, 255, 124, _hasPreviousPage ? 64 : 5),
           ),
+        ),
+      );
+
+  Widget _getButtonNextQuestion() => Padding(
+        padding: EdgeInsets.only(bottom: 10, right: 10),
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: FloatingActionButton.extended(
+            heroTag: "btnProxima",
+            onPressed: () => _key.currentState.nextQuestion(),
+            label: Text('Próxima'),
+            //icon: Icon(Icons.keyboard_arrow_right),
+            backgroundColor: Color.fromARGB(255, 255, 124, 64),
+          ),
+        ),
+      );
+
+  Widget _getButtonFinalizar() => Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
           Padding(
             padding: EdgeInsets.only(bottom: 10, right: 10),
             child: Align(
               alignment: Alignment.bottomRight,
               child: FloatingActionButton.extended(
+                heroTag: "btnFinalizar",
                 onPressed: () {},
-                label: Text('Avançar'),
-                //icon: Icon(Icons.keyboard_arrow_right),
+                label: Text('Finalizar'),
+                icon: Icon(Icons.save),
                 backgroundColor: Color.fromARGB(255, 255, 124, 64),
               ),
             ),
           ),
         ],
-      ),
-    );
+      );
+
+  @override
+  void hasNextPage(bool hasNextPage) {
+    setState(() {
+      this._hasNextPage = hasNextPage;
+    });
   }
-}
 
-Widget cardQuestao() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: <Widget>[
-      Text(
-        "1. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        style: TextStyle(color: Colors.black, fontSize: 15),
-      ),
-      RadioListTile(
-        title: Text(
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-          style: TextStyle(color: Colors.black, fontSize: 13),
-        ),
-        value: 0,
-        groupValue: 0,
-        onChanged: (c) {
-          print(c);
-        },
-      ),
-      RadioListTile(
-        title: Text(
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-          style: TextStyle(color: Colors.black, fontSize: 13),
-        ),
-        value: 0,
-        groupValue: 0,
-        onChanged: (c) {
-          print(c);
-        },
-      ),
-      RadioListTile(
-        title: Text(
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-          style: TextStyle(color: Colors.black, fontSize: 13),
-        ),
-        value: 0,
-        groupValue: 0,
-        onChanged: (c) {
-          print(c);
-        },
-      ),
-      RadioListTile(
-        title: Text(
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-          style: TextStyle(color: Colors.black, fontSize: 13),
-        ),
-        value: 0,
-        groupValue: 0,
-        onChanged: (c) {
-          print(c);
-        },
-      ),
-    ],
-  );
-}
-
-Widget buttonFinalizar() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.end,
-    children: <Widget>[
-      Padding(
-        padding: EdgeInsets.only(right: 5, left: 5),
-        child: FlatButton.icon(
-          color: Color.fromARGB(255, 255, 124, 64),
-          icon: Icon(
-            Icons.save,
-            color: Colors.white,
-          ),
-          label: Text(
-            "Finalizar",
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-          onPressed: () {},
-        ),
-      ),
-    ],
-  );
+  @override
+  void hasPreviousPage(bool hasPreviousPage) {
+    setState(() {
+      this._hasPreviousPage = hasPreviousPage;
+    });
+  }
 }

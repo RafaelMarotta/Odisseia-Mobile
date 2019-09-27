@@ -56,7 +56,7 @@ class _CardMissaoState extends State<CardMissao> {
             ),
           ),
           Text(
-            _cardMissaoDTO.dataEntrega.toString(),
+            _cardMissaoDTO.dataPrazo,
             style:
                 TextStyle(color: Color.fromARGB(255, 16, 6, 17), fontSize: 12),
           ),
@@ -97,7 +97,7 @@ class _CardMissaoState extends State<CardMissao> {
                 style: TextStyle(fontFamily: 'DalekPinpointBold', fontSize: 15),
               ),
               onPressed: () {
-                Alertonsetofattack().build(context);
+                Alertonsetofattack(this._cardMissaoDTO.id,this._cardMissaoDTO.fkMissaoAluno).build(context);
               },
             ),
           ),

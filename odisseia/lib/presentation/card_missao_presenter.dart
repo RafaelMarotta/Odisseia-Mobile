@@ -15,7 +15,7 @@ class CardMissaoListPresenter {
   }
 
   void loadCurrencies() {
-    _repository.feetchListCardMissaoDTO()
+    _repository.fetchListCardMissaoDTO()
     .then((cardList) => _view.onLoadCardMissaoComplete(cardList))
     .catchError((error) => _view.onLoadCardMissaoError());
   }

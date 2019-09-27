@@ -3,6 +3,10 @@ import 'package:odisseia/view/screens/missao_screen.dart';
 
 
 class Alertonsetofattack extends StatelessWidget {
+  final int missaoId;
+  final int missaoAlunoId;
+  Alertonsetofattack(this.missaoId,this.missaoAlunoId);
+
   @override
   Widget build(BuildContext context) {
     showDialog(
@@ -42,7 +46,7 @@ class Alertonsetofattack extends StatelessWidget {
               Navigator.of(context).pop();
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MissaoScreen()),
+                MaterialPageRoute(builder: (context) => MissaoScreen(this.missaoId,this.missaoAlunoId)),
               );
             },
           )

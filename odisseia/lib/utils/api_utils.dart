@@ -9,6 +9,7 @@ static const ALUNOBYUSUARIO = _url + "/Usuario/";
 
 //Missão
 static const MISSAOCARD = _url + "/Missao/Aluno/";
+static const QUESTAORESOLUCAO = _url + "/Missao/Questao/";
 }
 
 
