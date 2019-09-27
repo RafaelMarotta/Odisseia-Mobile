@@ -57,6 +57,13 @@ flutter:
     - images/meandro_grego.png
     - images/pi.png
 
+    - images/done.png
+    - images/close.png
+    - images/avatar.jpg
+    - images/map.png
+    - images/scroll2.png
+    - images/boat.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
@@ -92,6 +99,10 @@ flutter:
     - family: Montserrat-Light
       fonts:
         - asset: fonts/Montserrat-Light.ttf
+
+    - family: RobotoCondensed-Regular
+      fonts:
+        - asset: fonts/RobotoCondensed-Regular.ttf
 
     #- family: helmet_font   #Icone invisivel (Corrigir)
      # fonts:

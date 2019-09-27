@@ -49,9 +49,12 @@ class QuestaoListViewState extends State<QuestaoListView> implements IQuestaoLis
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Text(
-          questaoDTO.enunciado,
-          style: TextStyle(color: Colors.black, fontSize: 15),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            questaoDTO.enunciado,
+            style: TextStyle(color: Colors.black, fontSize: 15),
+          ),
         ),
         ListView.builder(
           itemCount: questaoDTO.alternativas.length,
