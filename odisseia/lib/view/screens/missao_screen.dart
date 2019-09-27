@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:odisseia/presentation/Contracts/pagination_contract.dart';
 import 'package:odisseia/view/listViews/questao_list_view.dart';
+import 'package:odisseia/view/widgets/bottomSheet_missaoFinalizada.dart';
 
 class MissaoScreen extends StatefulWidget {
   final int missaoId;
   final int missaoAlunoId;
-  MissaoScreen(this.missaoId,this.missaoAlunoId);
+  MissaoScreen(this.missaoId, this.missaoAlunoId);
 
   @override
-  _MissaoScreenState createState() => _MissaoScreenState(this.missaoId,this.missaoAlunoId);
+  _MissaoScreenState createState() =>
+      _MissaoScreenState(this.missaoId, this.missaoAlunoId);
 }
 
 class _MissaoScreenState extends State<MissaoScreen>
@@ -19,7 +21,7 @@ class _MissaoScreenState extends State<MissaoScreen>
   bool _hasPreviousPage = false;
 
   final GlobalKey<QuestaoListViewState> _key = GlobalKey();
-  _MissaoScreenState(this.missaoId,this.missaoAlunoId);
+  _MissaoScreenState(this.missaoId, this.missaoAlunoId);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class _MissaoScreenState extends State<MissaoScreen>
               children: <Widget>[
                 Padding(
                     padding: EdgeInsets.only(top: 10, left: 10),
-                    child: QuestaoListView(_key, missaoId, this,missaoAlunoId))
+                    child: QuestaoListView(_key, missaoId, this, missaoAlunoId))
               ],
             ),
           ),
@@ -89,7 +91,10 @@ class _MissaoScreenState extends State<MissaoScreen>
               alignment: Alignment.bottomRight,
               child: FloatingActionButton.extended(
                 heroTag: "btnFinalizar",
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                  BottomSheetMissaoFinalizada().build(context);
+                },
                 label: Text('Finalizar'),
                 icon: Icon(Icons.save),
                 backgroundColor: Color.fromARGB(255, 255, 124, 64),
@@ -113,3 +118,4 @@ class _MissaoScreenState extends State<MissaoScreen>
     });
   }
 }
+
