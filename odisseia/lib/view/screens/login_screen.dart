@@ -4,7 +4,6 @@ import 'package:odisseia/presentation/usuario_login_presenter.dart';
 import 'package:odisseia/utils/flutter_utils.dart';
 import 'package:odisseia/view/screens/home_screen.dart';
 
-
 class LoginScreen extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -13,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginState extends State<LoginScreen> implements IUsuarioLoginContract {
   TextEditingController _loginController = TextEditingController();
   TextEditingController _senhaController = TextEditingController();
-  
+
   String _failText = "";
   UsuarioLoginPresenter _presenter;
 
@@ -54,39 +53,21 @@ class _LoginState extends State<LoginScreen> implements IUsuarioLoginContract {
   }
 
   Widget _options() => Padding(
-        padding: EdgeInsets.only(top: 80.0, bottom: 10),
+        padding: EdgeInsets.only(top: 80.0, bottom: 10, left: 45),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-                padding: EdgeInsets.only(right: 10, left: 10),
-                child: FlatButton(
-                  color: Colors.white,
-                  child: Text(
-                    "ALUNO",
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 255, 124, 64), fontSize: 14),
-                  ),
-                  onPressed: () {},
-                )),
-            Padding(
-                padding: EdgeInsets.only(right: 10, left: 10),
-                child: FlatButton(
-                  child: Text(
-                    "PROFESSOR",
-                    style: TextStyle(color: Colors.white, fontSize: 14),
-                  ),
-                  onPressed: () {},
-                )),
-            Padding(
-                padding: EdgeInsets.only(right: 10, left: 10),
-                child: FlatButton(
-                  child: Text(
-                    "ESCOLA",
-                    style: TextStyle(color: Colors.white, fontSize: 14),
-                  ),
-                  onPressed: () {},
-                )),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: FlatButton(
+                color: Colors.white,
+                child: Text(
+                  "ALUNO",
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 255, 124, 64), fontSize: 14),
+                ),
+                onPressed: () {},
+              ),
+            )
           ],
         ),
       );
@@ -107,10 +88,7 @@ class _LoginState extends State<LoginScreen> implements IUsuarioLoginContract {
                         borderSide:
                             const BorderSide(color: Colors.white, width: 1.5),
                       ),
-                      prefixIcon: Icon(
-                        const IconData(0xe900, fontFamily: 'helmet_font'),
-                        color: Colors.white,
-                      ),
+                      prefixIcon: Icon(Icons.person, color: Colors.white),
                       labelText: 'LOGIN',
                       labelStyle:
                           TextStyle(color: Colors.white, fontSize: 14))),
@@ -125,8 +103,7 @@ class _LoginState extends State<LoginScreen> implements IUsuarioLoginContract {
                     borderSide:
                         const BorderSide(color: Colors.white, width: 1.5),
                   ),
-                  prefixIcon:
-                      Icon(Icons.keyboard_capslock, color: Colors.white),
+                  prefixIcon: Icon(Icons.lock, color: Colors.white),
                   labelText: 'PASSWORD',
                   labelStyle: TextStyle(color: Colors.white, fontSize: 14)),
             ),
@@ -144,7 +121,11 @@ class _LoginState extends State<LoginScreen> implements IUsuarioLoginContract {
                     senha: _senhaController.text));
               },
             ),
-            Text(_failText,textAlign: TextAlign.left,style: TextStyle(color: Colors.white),)
+            Text(
+              _failText,
+              textAlign: TextAlign.left,
+              style: TextStyle(color: Colors.white),
+            )
           ],
         ),
       );
@@ -155,13 +136,13 @@ class _LoginState extends State<LoginScreen> implements IUsuarioLoginContract {
       FlutterUtils.goToScreen(context, HomeScreen());
     } else {
       setState(() {
-        _failText = "Login ou senha Inválida";  
+        _failText = "Login ou senha Inválida";
       });
     }
   }
 
   @override
   void onValidateLoginError() {
-      _failText = "Verifique sua conexão com a internet !";
+    _failText = "Verifique sua conexão com a internet !";
   }
 }
