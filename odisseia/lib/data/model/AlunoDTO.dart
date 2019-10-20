@@ -1,10 +1,16 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'UsuarioLoginDTO.dart';
+
 part 'AlunoDTO.g.dart';
 
 @JsonSerializable()
 class AlunoDTO {
   int id;
+  String nome;
+  String login;
+  String senha;
+  int tipo;
   bool excluido;
 
   AlunoDTO({this.id, this.excluido});
@@ -14,5 +20,5 @@ class AlunoDTO {
 }
 
 abstract class IAlunoRepository {
-  Future<AlunoDTO> feetchAlunoByUsuarioLogado();
+  Future<bool> login(UsuarioLoginDTO usuarioLoginDTO);
 }

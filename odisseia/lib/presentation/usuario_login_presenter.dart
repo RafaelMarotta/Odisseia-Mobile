@@ -1,6 +1,6 @@
-import 'package:odisseia/data/model/UsuarioDTO.dart';
+import 'package:odisseia/data/model/AlunoDTO.dart';
 import 'package:odisseia/data/model/UsuarioLoginDTO.dart';
-import 'package:odisseia/data/repository/usuario_repository.dart';
+import 'package:odisseia/data/repository/aluno_repository.dart';
 
 abstract class IUsuarioLoginContract {
   void onValidateLogin(bool isValido);
@@ -9,10 +9,10 @@ abstract class IUsuarioLoginContract {
 
 class UsuarioLoginPresenter {
   IUsuarioLoginContract _view;
-  IUsuarioRepository _repository;
+  IAlunoRepository _repository;
   
   UsuarioLoginPresenter(this._view) {
-    _repository = new UsuarioRepository();
+    _repository = new AlunoRepository();
   }
 
   void login(UsuarioLoginDTO loginDTO){

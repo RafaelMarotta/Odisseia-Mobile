@@ -4,7 +4,7 @@ static const _url = "http://18.217.240.189:6001/api";
 //Funcionalidades
 
 //Usuario
-static const LOGIN = _url + "/Usuario/Login";
+static const LOGIN = _url + "/Aluno/Login";
 static const ALUNOBYUSUARIO = _url + "/Usuario/";
 
 //Missão
