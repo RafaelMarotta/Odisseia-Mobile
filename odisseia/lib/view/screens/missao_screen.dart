@@ -24,16 +24,16 @@ class _MissaoScreenState extends State<MissaoScreen>
   MissaoResolucaoPresenter _presenter;
 
   @override
-  void initState() { 
+  void initState() {
     super.initState();
   }
 
   List<MissaoResolucaoDTO> listResolucaoDTO = new List<MissaoResolucaoDTO>();
 
   final GlobalKey<QuestaoListViewState> _key = GlobalKey();
-  _MissaoScreenState(this.missaoId,this.missaoAlunoId) {
+  _MissaoScreenState(this.missaoId, this.missaoAlunoId) {
     _presenter = MissaoResolucaoPresenter(this);
-   }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +71,9 @@ class _MissaoScreenState extends State<MissaoScreen>
             disabledElevation: 10,
             heroTag: "btnVoltar",
             onPressed: () {
-              if(_hasPreviousPage) { 
+              if (_hasPreviousPage) {
                 listResolucaoDTO.removeLast();
-                _key.currentState.previousQuestion() ;
+                _key.currentState.previousQuestion();
               }
             },
             label: Text('Voltar'),
@@ -91,7 +91,8 @@ class _MissaoScreenState extends State<MissaoScreen>
           child: FloatingActionButton.extended(
             heroTag: "btnProxima",
             onPressed: () {
-              listResolucaoDTO.add(MissaoResolucaoDTO.build(_key.currentState.resolucaoDTO));
+              listResolucaoDTO.add(
+                  MissaoResolucaoDTO.build(_key.currentState.resolucaoDTO));
               _key.currentState.nextQuestion();
             },
             label: Text('Próxima'),
@@ -111,7 +112,8 @@ class _MissaoScreenState extends State<MissaoScreen>
               child: FloatingActionButton.extended(
                 heroTag: "btnFinalizar",
                 onPressed: () {
-                  listResolucaoDTO.add(MissaoResolucaoDTO.build(_key.currentState.resolucaoDTO));
+                  listResolucaoDTO.add(
+                      MissaoResolucaoDTO.build(_key.currentState.resolucaoDTO));
                   _presenter.submit(listResolucaoDTO);
                 },
                 label: Text('Finalizar'),
@@ -150,4 +152,3 @@ class _MissaoScreenState extends State<MissaoScreen>
     print("salvou");
   }
 }
-
