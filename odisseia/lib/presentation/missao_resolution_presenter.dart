@@ -18,7 +18,6 @@ class MissaoResolucaoPresenter {
       _repository = new MissaoResolucaoRepository();
     }
 
-
     void submit(List<MissaoResolucaoDTO> dto) {
     _repository.salvarMissaoResolucao(dto)
     .then((dto) => _view.onFinalizarMissaoLoadResult(dto))

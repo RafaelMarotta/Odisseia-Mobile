@@ -20,9 +20,8 @@ class _MissaoScreenState extends State<MissaoScreen>
   final int missaoAlunoId;
   bool _hasNextPage = true;
   bool _hasPreviousPage = false;
-
   MissaoResolucaoPresenter _presenter;
-
+  
   @override
   void initState() { 
     super.initState();
@@ -111,6 +110,7 @@ class _MissaoScreenState extends State<MissaoScreen>
               child: FloatingActionButton.extended(
                 heroTag: "btnFinalizar",
                 onPressed: () {
+                  _key.currentState.finalizeQuestion();
                   listResolucaoDTO.add(MissaoResolucaoDTO.build(_key.currentState.resolucaoDTO));
                   _presenter.submit(listResolucaoDTO);
                 },

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:odisseia/data/model/AlternativaDTO.dart';
@@ -6,6 +8,7 @@ import 'package:odisseia/data/model/QuestaoDTO.dart';
 import 'package:odisseia/data/model/QuestaoPaginationDTO.dart';
 import 'package:odisseia/presentation/Contracts/pagination_contract.dart';
 import 'package:odisseia/presentation/questao_resolution_presenter.dart';
+import 'package:odisseia/utils/shared_utils.dart';
 
 class QuestaoListView extends StatefulWidget {
   final int _missaoId;
@@ -23,6 +26,7 @@ class QuestaoListViewState extends State<QuestaoListView> implements IQuestaoLis
   MissaoResolucaoDTO resolucaoDTO;
   final IPaginationContract _pagination;
   final int _missaoAlunoId;
+  Stopwatch stopwatch = Stopwatch();
 
     QuestaoResolutionPresenter _presenter;
   QuestaoPaginationDTO currencies;
@@ -99,20 +103,37 @@ class QuestaoListViewState extends State<QuestaoListView> implements IQuestaoLis
   void nextQuestion() {
       if(currencies.hasNextPage){
         setState(() {
+          finalizeQuestion();
           ordem++;
         _presenter.loadCurrencies(_missaoId, ordem);
         });
       }
   }
 
-  void previousQuestion() {
-     if(currencies.hasPreviousPage) {
-       setState(() {
-       ordem --; 
-      _presenter.loadCurrencies(_missaoId, ordem);
-       });
-     }
+  void finalizeQuestion() {
+    resolucaoDTO.tempoGasto = resolucaoDTO.tempoGasto != null ? 
+            resolucaoDTO.tempoGasto + stopwatch.elapsedMilliseconds
+            : resolucaoDTO.tempoGasto = stopwatch.elapsedMilliseconds;
+          stopwatch.reset();
+          SharedUtils.save(
+            buildHashResolucao(), 
+            jsonEncode(resolucaoDTO.toJson())
+          );
   }
+
+  String buildHashResolucao(){
+    return "M:"+resolucaoDTO.fkMissaoAluno.toString()+"Q:"+resolucaoDTO.fkQuestao.toString();
+  }
+
+  void previousQuestion(){
+     if(currencies.hasPreviousPage) {
+       setState(()  {
+      finalizeQuestion();
+       ordem --; 
+      _presenter.loadCurrencies(_missaoId, ordem);   
+     });
+  }
+}
 
   @override
   void onLoadQuestaoPaginationComplete(QuestaoPaginationDTO questaoPaginationDTO) {
@@ -122,6 +143,17 @@ class QuestaoListViewState extends State<QuestaoListView> implements IQuestaoLis
       resolucaoDTO.fkQuestao = currencies.items[0].id;
       resolucaoDTO.fkAlternativa = currencies.items[0].alternativas[0].id;
     });
+      recoverChanges(resolucaoDTO);
+      stopwatch.start();
+  }
+
+  void recoverChanges(MissaoResolucaoDTO dto) async{
+    MissaoResolucaoDTO dto = await SharedUtils.getMissaoResolucaoDTO(buildHashResolucao());
+    if(dto != null) {
+      resolucaoDTO.tempoGasto = dto.tempoGasto;
+      resolucaoDTO.fkAlternativa = dto.fkAlternativa;
+      selectedValue = dto.fkAlternativa;
+    }
   }
 
   @override

@@ -7,10 +7,17 @@ class MissaoResolucaoDTO{
     int fkMissaoAluno;
     int fkQuestao;
     int fkAlternativa;
-  MissaoResolucaoDTO({this.fkMissaoAluno,this.fkQuestao,this.fkAlternativa});
+    int tempoGasto=0;
+
+  MissaoResolucaoDTO({this.fkMissaoAluno,this.fkQuestao,this.fkAlternativa,this.tempoGasto});
   
     static build(MissaoResolucaoDTO dto) => 
-    MissaoResolucaoDTO(fkMissaoAluno: dto.fkMissaoAluno, fkQuestao: dto.fkQuestao,fkAlternativa: dto.fkAlternativa);
+    MissaoResolucaoDTO(
+      fkMissaoAluno: dto.fkMissaoAluno, 
+      fkQuestao: dto.fkQuestao,
+      fkAlternativa: dto.fkAlternativa,
+      tempoGasto: dto.tempoGasto
+    );
  
   factory MissaoResolucaoDTO.fromJson(Map<String,dynamic> json) => _$MissaoResolucaoDTOFromJson(json);
   Map<String,dynamic> toJson() => _$MissaoResolucaoDTOToJson(this);

@@ -9,7 +9,7 @@ import 'package:odisseia/utils/shared_utils.dart';
 class CardMissaoRepository implements ICardMissaoRepository{
   @override
   Future<List<CardMissaoDTO>> fetchListCardMissaoDTO() async {
-   AlunoDTO alunoDTO = await SharedUtils().getAlunoLogado();
+   AlunoDTO alunoDTO = await SharedUtils.getAlunoLogado();
      String json = await Http.get(ApiUtils.MISSAOCARD+alunoDTO.id.toString());
       final parsed = jsonDecode(json);
       List<CardMissaoDTO> list = parsed.map<CardMissaoDTO>((json) => CardMissaoDTO.fromJson(json)).toList();

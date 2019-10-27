@@ -1,14 +1,32 @@
 import 'dart:convert';
 
 import 'package:odisseia/data/model/AlunoDTO.dart';
+import 'package:odisseia/data/model/MissaoResolucaoDTO.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedUtils {
-  Future<AlunoDTO> getAlunoLogado() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.get('aluno') == null) {
+  static SharedPreferences shared;
+  static Future<AlunoDTO> getAlunoLogado() async {
+    if (shared.get('aluno') == null) {
       return null;
     }
-    return AlunoDTO.fromJson(jsonDecode(prefs.get('aluno')));
+    return AlunoDTO.fromJson(jsonDecode(shared.get('aluno')));
   }
+
+  static Future<MissaoResolucaoDTO> getMissaoResolucaoDTO(String hash) async {
+    if(shared.get(hash) == null) {
+      return null;
+    }
+    return MissaoResolucaoDTO.fromJson(jsonDecode(shared.get(hash)));
+  }
+
+  static void save(String key, String json) {
+    shared.setString(key, json);
+  }
+  
+  static void initialize() async {
+    shared = await SharedPreferences.getInstance();
+  }
+
+  
 }
