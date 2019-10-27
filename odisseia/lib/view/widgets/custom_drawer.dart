@@ -7,13 +7,12 @@ import 'package:odisseia/view/tiles/drawer_tile.dart';
 class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Widget _buildDrawerBack() =>
-        Container(
-          color: Color.fromARGB(255, 255, 124, 64)
-          );
+    Widget _buildDrawerBack() => Container(
+          color: Color.fromARGB(255, 35, 90, 159),
+        );
 
     Widget _buildListView() => ListView(
-          padding: EdgeInsets.only(top: 50,right:40),
+          padding: EdgeInsets.only(top: 50, right: 40),
           children: <Widget>[
             GestureDetector(
               child: Container(
@@ -24,39 +23,39 @@ class CustomDrawer extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top:15,bottom: 35),
-              child: Text(
-                "LVL 10",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30.0,
-                  fontFamily: 'DalekPinpointBold'
-                ),
-              )
-            ),
-            DrawerTile("images/helmet.png","PERFIL",PerfilScreen()),
-            DrawerTile("images/scroll.png","MISSÕES",HomeScreen())
+                margin: EdgeInsets.only(top: 15, bottom: 35),
+                child: Text(
+                  "LVL 10",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.0,
+                      fontFamily: 'DalekPinpointBold'),
+                )),
+            DrawerTile("images/helmet.png", "PERFIL", PerfilScreen()),
+            DrawerTile("images/scroll.png", "MISSÕES", HomeScreen())
           ],
         );
 
     return Drawer(
-        child: Stack(children: <Widget>[
-      Stack(
+      child: Stack(
         children: <Widget>[
-          _buildDrawerBack(),
-          _buildListView(),
-          Positioned(
-            child: Image.asset(
-            "images/meandro_grego.png",
-            width: 40,
-            height: 100000,
-            repeat: ImageRepeat.repeat,
-            ),
-            right: 0
+          Stack(
+            children: <Widget>[
+              _buildDrawerBack(),
+              _buildListView(),
+              Positioned(
+                  child: Image.asset(
+                    "images/meandro_grego.png",
+                    width: 40,
+                    height: 100000,
+                    repeat: ImageRepeat.repeat,
+                  ),
+                  right: 0),
+            ],
           )
         ],
-      )
-    ]));
+      ),
+    );
   }
 }
