@@ -64,7 +64,8 @@ flutter:
     - images/scroll2.png
     - images/boat.png
     - images/trophy.png
-
+    - images/Logo_Reduzida_Branca.png
+    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

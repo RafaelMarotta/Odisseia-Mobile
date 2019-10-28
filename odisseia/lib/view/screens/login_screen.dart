@@ -9,7 +9,8 @@ class LoginScreen extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
-class _LoginState extends State<LoginScreen> implements IUsuarioLoginContract {
+class _LoginState extends State<LoginScreen>
+    implements IUsuarioLoginContract {
   TextEditingController _loginController = TextEditingController();
   TextEditingController _senhaController = TextEditingController();
 
@@ -28,106 +29,100 @@ class _LoginState extends State<LoginScreen> implements IUsuarioLoginContract {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 255, 124, 64),
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 255, 124, 64),
-          elevation: 0,
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Image.asset(
-                "images/logo.png",
-                fit: BoxFit.scaleDown,
-                width: 300,
-              ),
-              Text(
-                "WELCOME",
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              ),
-              _options(),
-              _form(context)
-            ],
-          ),
-        ));
-  }
-
-  Widget _options() => Padding(
-        padding: EdgeInsets.only(top: 80.0, bottom: 10, left: 45),
-        child: Row(
-          children: <Widget>[
-            Align(
-              alignment: Alignment.centerLeft,
-              child: FlatButton(
-                color: Colors.white,
-                child: Text(
-                  "ALUNO",
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 124, 64), fontSize: 14),
-                ),
-                onPressed: () {},
-              ),
-            )
-          ],
-        ),
-      );
-
-  Widget _form(BuildContext context) => Container(
-        width: 328,
+      backgroundColor: Color.fromARGB(255, 9, 38, 66),
+      body: Padding(
+        padding: EdgeInsets.only(left: 15.0, right: 15.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(bottom: 5),
-              child: TextField(
-                  controller: _loginController,
-                  //style: TextStyle(height: 0),
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.white, width: 1.5),
-                      ),
-                      prefixIcon: Icon(Icons.person, color: Colors.white),
-                      labelText: 'LOGIN',
-                      labelStyle:
-                          TextStyle(color: Colors.white, fontSize: 14))),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Image.asset(
+                      "images/Logo_Reduzida_Branca.png",
+                      width: 150,
+                    ),
+                    Text(
+                      "ALUNO",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontFamily: 'Augustus'),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            TextField(
-              controller: _senhaController,
-              //style: TextStyle(height: 0),
-              keyboardType: TextInputType.text,
-              obscureText: true,
-              decoration: InputDecoration(
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Colors.white, width: 1.5),
-                  ),
-                  prefixIcon: Icon(Icons.lock, color: Colors.white),
-                  labelText: 'PASSWORD',
-                  labelStyle: TextStyle(color: Colors.white, fontSize: 14)),
-            ),
-            RaisedButton(
-              color: Colors.white,
-              textColor: Color.fromARGB(255, 255, 124, 64),
-              padding: EdgeInsets.only(left: 134, right: 134),
-              child: Text(
-                "ENTRAR",
-                style: TextStyle(fontSize: 14),
-              ),
-              onPressed: () async {
-                _presenter.login(UsuarioLoginDTO(
-                    login: _loginController.text,
-                    senha: _senhaController.text));
-              },
-            ),
-            Text(
-              _failText,
-              textAlign: TextAlign.left,
-              style: TextStyle(color: Colors.white),
+            SingleChildScrollView(
+              child: _form(context),
             )
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _form(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(bottom: 10.0),
+            child: TextField(
+              style: TextStyle(color: Colors.white),
+              controller: _loginController,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.white, width: 1.5),
+                ),
+                prefixIcon: Icon(Icons.person, color: Colors.white),
+                labelText: 'LOGIN',
+                labelStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontFamily: 'RobotoCondensed-Regular'),
+              ),
+            ),
+          ),
+          TextField(
+            style: TextStyle(color: Colors.white),
+            controller: _senhaController,
+            keyboardType: TextInputType.text,
+            obscureText: true,
+            decoration: InputDecoration(
+              enabledBorder: const OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.white, width: 1.5),
+              ),
+              prefixIcon: Icon(Icons.lock, color: Colors.white),
+              labelText: 'PASSWORD',
+              labelStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontFamily: 'RobotoCondensed-Regular'),
+            ),
+          ),
+          RaisedButton(
+            color: Color.fromARGB(255, 35, 90, 159),
+            child: Text(
+              "ENTRAR",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'RobotoCondensed-Regular',
+                  fontSize: 18.0),
+            ),
+            onPressed: () async {
+              _presenter.login(UsuarioLoginDTO(
+                  login: _loginController.text, senha: _senhaController.text));
+            },
+          ),
+          Text(
+            _failText,
+            textAlign: TextAlign.left,
+            style: TextStyle(color: Colors.white),
+          )
+        ],
       );
 
   @override
