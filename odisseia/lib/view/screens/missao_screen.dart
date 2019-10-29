@@ -85,7 +85,7 @@ class _MissaoScreenState extends State<MissaoScreen>
               }
             },
             child: Icon(Icons.keyboard_arrow_left),
-            backgroundColor: Color.fromARGB(255, 35, 90, 159),
+            backgroundColor: Color.fromARGB(255, 35, 90, _hasPreviousPage ? 159 : 0),
           ),
         ),
       );

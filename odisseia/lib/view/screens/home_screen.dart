@@ -88,7 +88,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          body: MissaoCardListView(),
+          body: Container(
+            padding: EdgeInsets.only(left: 15, right: 15),
+            child: MissaoCardListView(),
+          ),
           backgroundColor: Color.fromARGB(255, 9, 38, 66),
         ),
       ),
