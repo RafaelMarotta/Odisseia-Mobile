@@ -47,6 +47,7 @@ class _PerfilTabState extends State<PerfilTab> {
                 },
                 child: Icon(Icons.menu),
                 backgroundColor: Color.fromARGB(255, 35, 90, 159),
+                mini: true,
               ),
             ),
           ),

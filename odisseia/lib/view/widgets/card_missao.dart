@@ -14,7 +14,7 @@ class _CardMissaoState extends State<CardMissao> {
 
   _CardMissaoState(this._cardMissaoDTO);
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     return SizedBox(
       height: 150,

@@ -38,20 +38,29 @@ class _MissaoScreenState extends State<MissaoScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 124, 64),
-        title: Image.asset("images/logo.png"),
+        backgroundColor: Color.fromARGB(255, 9, 38, 66),
+        title: Text(
+          "ODISSEIA",
+          style: TextStyle(
+            fontFamily: 'Augustus',
+            fontSize: 25.0,
+            color: Colors.white
+            ),
+          ),
         centerTitle: true,
+        elevation: 0,
       ),
       body: Stack(
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(left: 5, right: 5),
-            color: Colors.white,
+            color: Color.fromARGB(255, 9, 38, 66),
             child: ListView(
               children: <Widget>[
                 Padding(
-                    padding: EdgeInsets.only(top: 10, left: 10),
-                    child: QuestaoListView(_key, missaoId, this, missaoAlunoId))
+                    padding: EdgeInsets.only(top: 15, left: 10),
+                    child: QuestaoListView(_key, missaoId, this, missaoAlunoId),
+                ),
               ],
             ),
           ),
@@ -66,7 +75,7 @@ class _MissaoScreenState extends State<MissaoScreen>
         padding: EdgeInsets.only(bottom: 10, left: 10),
         child: Align(
           alignment: Alignment.bottomLeft,
-          child: FloatingActionButton.extended(
+          child: FloatingActionButton(
             disabledElevation: 10,
             heroTag: "btnVoltar",
             onPressed: () {
@@ -75,10 +84,8 @@ class _MissaoScreenState extends State<MissaoScreen>
                 _key.currentState.previousQuestion();
               }
             },
-            label: Text('Voltar'),
-            //icon: Icon(Icons.keyboard_arrow_left),
-            backgroundColor:
-                Color.fromARGB(255, 255, 124, _hasPreviousPage ? 64 : 5),
+            child: Icon(Icons.keyboard_arrow_left),
+            backgroundColor: Color.fromARGB(255, 35, 90, 159),
           ),
         ),
       );
@@ -87,16 +94,15 @@ class _MissaoScreenState extends State<MissaoScreen>
         padding: EdgeInsets.only(bottom: 10, right: 10),
         child: Align(
           alignment: Alignment.bottomRight,
-          child: FloatingActionButton.extended(
+          child: FloatingActionButton(
             heroTag: "btnProxima",
             onPressed: () {
               listResolucaoDTO.add(
                   MissaoResolucaoDTO.build(_key.currentState.resolucaoDTO));
               _key.currentState.nextQuestion();
             },
-            label: Text('Próxima'),
-            //icon: Icon(Icons.keyboard_arrow_right),
-            backgroundColor: Color.fromARGB(255, 255, 124, 64),
+            child: Icon(Icons.keyboard_arrow_right),
+            backgroundColor: Color.fromARGB(255, 35, 90, 159),
           ),
         ),
       );
@@ -117,7 +123,7 @@ class _MissaoScreenState extends State<MissaoScreen>
                 },
                 label: Text('Finalizar'),
                 icon: Icon(Icons.save),
-                backgroundColor: Color.fromARGB(255, 255, 124, 64),
+                backgroundColor: Color.fromARGB(255, 35, 90, 159),
               ),
             ),
           ),
