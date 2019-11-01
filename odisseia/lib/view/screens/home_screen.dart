@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:odisseia/view/listViews/missao_card_finished_list_view.dart';
 import 'package:odisseia/view/listViews/missao_card_list_view.dart';
 import 'package:odisseia/view/tabs/base_tab.dart';
 import 'package:odisseia/view/widgets/custom_drawer.dart';
@@ -94,18 +95,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           backgroundColor: Color.fromARGB(255, 9, 38, 66),
         ),
-      ),
-    );
-  }
-
-  Widget _getTab(String text) {
-    return Text(
-      text,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 15.0,
-        fontFamily: 'DalekPinpointBold',
       ),
     );
   }
