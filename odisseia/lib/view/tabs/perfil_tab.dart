@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:odisseia/view/widgets/custom_drawer.dart';
+import 'package:odisseia/view/widgets/modal_edit_nick.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class PerfilTab extends StatefulWidget {
@@ -32,7 +33,7 @@ class _PerfilTabState extends State<PerfilTab> {
                     fit: BoxFit.fill,
                   ),
                 ),
-                info
+                _info(context)
               ],
             ),
           ),
@@ -60,12 +61,14 @@ class _PerfilTabState extends State<PerfilTab> {
 Widget avatar = Container(); //Avatar
 
 // info = Junção dos componentes abaixo do avatar
-Widget info = Container(
-  padding: EdgeInsets.only(left: 20, right: 20),
-  child: Column(
-    children: <Widget>[level, descricao, btnConquistas],
-  ),
-);
+Widget _info(BuildContext context) {
+  return Container(
+    padding: EdgeInsets.only(left: 20, right: 20),
+    child: Column(
+      children: <Widget>[level, _descricao(context), btnConquistas],
+    ),
+  );
+}
 
 Widget level = Padding(
   padding: EdgeInsets.only(top: 10.0),
@@ -73,15 +76,24 @@ Widget level = Padding(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            "39% para Lvl 11",
-            style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'RobotoCondensed-Regular',
-                fontSize: 18.0),
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              "Level 10",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'RobotoCondensed-Regular',
+                  fontSize: 18.0),
+            ),
+            Text(
+              "100xp para Lvl 11",
+              style: TextStyle(
+                  color: Colors.white60,
+                  fontFamily: 'RobotoCondensed-Regular',
+                  fontSize: 16.0),
+            ),
+          ],
         ),
         Padding(
           padding: EdgeInsets.only(top: 7.0),
@@ -100,30 +112,47 @@ Widget level = Padding(
   ),
 );
 
-Widget descricao = Padding(
-  padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: <Widget>[
-      Text(
-        "GUERREIRO",
-        style: TextStyle(
-            fontFamily: 'AUGUSTUS', fontSize: 20, color: Colors.white),
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 7.0),
-        child: Text(
-          "Tem a bravura de Hércules e Perseu juntos. É capas de enfrentar os mais terríveis obstáculos, como os desafios do Marcão. Mas ainda precisa lutar bastante para seu nome ser eterno.",
-          style: TextStyle(
-              fontFamily: 'RobotoCondensed-Regular',
-              fontSize: 15,
-              color: Colors.white),
-          textAlign: TextAlign.center,
+Widget _descricao(BuildContext context) {
+  return Padding(
+    padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "Encantado o Guerreiro",
+              style: TextStyle(
+                  fontFamily: 'AUGUSTUS', fontSize: 20, color: Colors.white),
+            ),
+            FloatingActionButton(
+              heroTag: "edit",
+              onPressed: () {
+                Modal_Edit_Nick().build(context);
+              },
+              child: Icon(Icons.edit),
+              backgroundColor: Color.fromARGB(255, 9, 38, 66),
+              mini: true,
+              elevation: 0,
+            ),
+          ],
         ),
-      ),
-    ],
-  ),
-);
+        Padding(
+          padding: EdgeInsets.only(top: 7.0),
+          child: Text(
+            "Tem a bravura de Hércules e Perseu juntos. É capaz de enfrentar os mais terríveis obstáculos, como os desafios do Marcão. Mas ainda precisa lutar bastante para seu nome ser eterno.",
+            style: TextStyle(
+                fontFamily: 'RobotoCondensed-Regular',
+                fontSize: 15,
+                color: Colors.white),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    ),
+  );
+}
 
 Widget btnConquistas = Column(
   crossAxisAlignment: CrossAxisAlignment.stretch,

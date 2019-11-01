@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:odisseia/data/model/MissaoResolucaoDTO.dart';
 import 'package:odisseia/presentation/missao_resolution_presenter.dart';
 import 'package:odisseia/view/listViews/questao_list_view.dart';
@@ -120,6 +121,7 @@ class _MissaoScreenState extends State<MissaoScreen>
                   _key.currentState.finalizeQuestion();
                   listResolucaoDTO.add(MissaoResolucaoDTO.build(_key.currentState.resolucaoDTO));
                   _presenter.submit(listResolucaoDTO);
+                  
                 },
                 label: Text('Finalizar'),
                 icon: Icon(Icons.save),

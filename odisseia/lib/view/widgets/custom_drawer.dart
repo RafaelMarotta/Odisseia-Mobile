@@ -23,15 +23,20 @@ class CustomDrawer extends StatelessWidget {
               ),
             ),
             Container(
-                margin: EdgeInsets.only(top: 15, bottom: 35),
-                child: Text(
-                  "LVL 10",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30.0,
-                      fontFamily: 'DalekPinpointBold'),
-                )),
+              margin: EdgeInsets.only(top: 15, bottom: 20),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    "Encantado",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30.0,
+                        fontFamily: 'DalekPinpointBold'),
+                  ),
+                ],
+              ),
+            ),
             DrawerTile("images/helmet.png", "PERFIL", PerfilScreen()),
             DrawerTile("images/scroll.png", "MISSÕES", HomeScreen())
           ],
