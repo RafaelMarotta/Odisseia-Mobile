@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:odisseia/view/screens/achievements_screen.dart';
 import 'package:odisseia/view/widgets/custom_drawer.dart';
 import 'package:odisseia/view/widgets/modal_edit_nick.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -65,7 +66,7 @@ Widget _info(BuildContext context) {
   return Container(
     padding: EdgeInsets.only(left: 20, right: 20),
     child: Column(
-      children: <Widget>[level, _descricao(context), btnConquistas],
+      children: <Widget>[level, _descricao(context), _btnConquistas(context)],
     ),
   );
 }
@@ -154,26 +155,33 @@ Widget _descricao(BuildContext context) {
   );
 }
 
-Widget btnConquistas = Column(
-  crossAxisAlignment: CrossAxisAlignment.stretch,
-  children: <Widget>[
-    FloatingActionButton.extended(
-      heroTag: "btnConquistas",
-      onPressed: () {},
-      label: Text(
-        'CONQUISTAS',
-        style: TextStyle(
-          color: Colors.white,
-          fontFamily: 'RobotoCondensed-Regular',
-          fontSize: 20.0,
+Widget _btnConquistas(BuildContext context) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: <Widget>[
+      FloatingActionButton.extended(
+        heroTag: "btnConquistas",
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AchievementsScreen()),
+          );
+        },
+        label: Text(
+          'CONQUISTAS',
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'RobotoCondensed-Regular',
+            fontSize: 20.0,
+          ),
         ),
-      ),
-      icon: Image.asset(
-        'images/trophy.png',
-        width: 20,
-        height: 20,
-      ),
-      backgroundColor: Color.fromARGB(255, 35, 90, 159),
-    )
-  ],
-);
+        icon: Image.asset(
+          'images/trophy.png',
+          width: 20,
+          height: 20,
+        ),
+        backgroundColor: Color.fromARGB(255, 35, 90, 159),
+      )
+    ],
+  );
+}

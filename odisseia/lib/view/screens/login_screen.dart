@@ -9,8 +9,7 @@ class LoginScreen extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
-class _LoginState extends State<LoginScreen>
-    implements IUsuarioLoginContract {
+class _LoginState extends State<LoginScreen> implements IUsuarioLoginContract {
   TextEditingController _loginController = TextEditingController();
   TextEditingController _senhaController = TextEditingController();
 
@@ -30,100 +29,83 @@ class _LoginState extends State<LoginScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 9, 38, 66),
-      body: Padding(
-        padding: EdgeInsets.only(left: 15.0, right: 15.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Image.asset(
-                      "images/Logo_Reduzida_Branca.png",
-                      width: 150,
-                    ),
-                    Text(
-                      "ALUNO",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontFamily: 'Augustus'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SingleChildScrollView(
-              child: _form(context),
-            )
-          ],
+      body: Container(
+        padding: EdgeInsets.only(top: 25, left: 20, right: 20),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/backLogin.jpg'),
+            fit: BoxFit.cover,
+          ),
         ),
+        child: _form(context),
       ),
     );
   }
 
-  Widget _form(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(bottom: 10.0),
-            child: TextField(
-              style: TextStyle(color: Colors.white),
-              controller: _loginController,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.white, width: 1.5),
-                ),
-                prefixIcon: Icon(Icons.person, color: Colors.white),
-                labelText: 'LOGIN',
-                labelStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontFamily: 'RobotoCondensed-Regular'),
-              ),
-            ),
+  Widget _form(BuildContext context) => ListView(
+    children: <Widget>[
+      SizedBox(
+        width: 80,
+        height: 80,
+        child: Image.asset('images/Logo_Reduzida_Branca.png'),
+      ),
+      SizedBox(
+        height: 30,
+      ),
+      TextFormField(
+        keyboardType: TextInputType.emailAddress,
+        controller: _loginController,
+        decoration: InputDecoration(
+          labelText: "LOGIN",
+          labelStyle: TextStyle(
+            fontSize: 18,
+            fontFamily: 'Augustus',
+            color: Colors.white,
           ),
-          TextField(
-            style: TextStyle(color: Colors.white),
-            controller: _senhaController,
-            keyboardType: TextInputType.text,
-            obscureText: true,
-            decoration: InputDecoration(
-              enabledBorder: const OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.white, width: 1.5),
-              ),
-              prefixIcon: Icon(Icons.lock, color: Colors.white),
-              labelText: 'PASSWORD',
-              labelStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontFamily: 'RobotoCondensed-Regular'),
-            ),
+        ),
+        style: TextStyle(color: Colors.white70),
+      ),
+      SizedBox(
+        height: 20,
+      ),
+      TextFormField(
+        keyboardType: TextInputType.text,
+        obscureText: true,
+        controller: _senhaController,
+        decoration: InputDecoration(
+          labelText: "SENHA",
+          labelStyle: TextStyle(
+            fontSize: 18,
+            fontFamily: 'Augustus',
+            color: Colors.white,
           ),
-          RaisedButton(
-            color: Color.fromARGB(255, 35, 90, 159),
-            child: Text(
-              "ENTRAR",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'RobotoCondensed-Regular',
-                  fontSize: 18.0),
-            ),
-            onPressed: () async {
-              _presenter.login(UsuarioLoginDTO(
-                  login: _loginController.text, senha: _senhaController.text));
-            },
-          ),
-          Text(
-            _failText,
-            textAlign: TextAlign.left,
-            style: TextStyle(color: Colors.white),
-          )
-        ],
-      );
+        ),
+        style: TextStyle(color: Colors.white70),
+      ),
+      SizedBox(
+        height: 20,
+      ),
+      RaisedButton(
+        color: Colors.white,
+        child: Text(
+          "ENTRAR",
+          style: TextStyle(
+              color: Color.fromARGB(255, 35, 90, 159),
+              fontFamily: 'RobotoCondensed-Regular',
+              fontSize: 18.0),
+        ),
+        onPressed: () async {
+          _presenter.login(UsuarioLoginDTO(
+              login: _loginController.text, senha: _senhaController.text));
+        },
+      ),
+      Text(
+        _failText,
+        textAlign: TextAlign.left,
+        style: TextStyle(color: Colors.white),
+      ),
+    ],
+  );
 
   @override
   void onValidateLogin(bool isValido) {
