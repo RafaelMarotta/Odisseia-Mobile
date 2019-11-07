@@ -92,24 +92,17 @@ flutter:
   #         weight: 700
   #
   fonts:
-    - family: Augustus
+    - family: augustus
       fonts:
-        - asset: fonts/AUGUSTUS.TTF
+        - asset: fonts/augustus.ttf
 
     - family: DalekPinpointBold
       fonts:
         - asset: fonts/DalekPinpointBold.ttf
 
-    - family: Montserrat-Light
-      fonts:
-        - asset: fonts/Montserrat-Light.ttf
-
     - family: RobotoCondensed-Regular
       fonts:
         - asset: fonts/RobotoCondensed-Regular.ttf
 
-    #- family: helmet_font   #Icone invisivel (Corrigir)
-     # fonts:
-      #  - asset: fonts/helmet_font.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

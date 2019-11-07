@@ -20,6 +20,7 @@ class _CardMissaoState extends State<CardMissao> {
     return Padding(
       padding: EdgeInsets.only(bottom: 15),
       child: Stack(
+        alignment: Alignment.centerLeft,
         children: <Widget>[
           Card(
             color: Color.fromARGB(255, 35, 90, 159),
@@ -32,21 +33,19 @@ class _CardMissaoState extends State<CardMissao> {
               child: _info(context),
             ),
           ),
-          missaoThumbnail,
+          _missaoThumbnail(context),
         ],
       ),
     );
   }
 
-  Widget missaoThumbnail = Container(
-    margin: EdgeInsets.symmetric(vertical: 40.0),
-    alignment: FractionalOffset.centerLeft,
-    child: Image(
+  Widget _missaoThumbnail(BuildContext context) {
+    return Image(
       image: AssetImage("images/pi.png"),
       height: 50.0,
       width: 50.0,
-    ),
-  );
+    );
+  }
 
   Widget _info(BuildContext context) {
     return Column(
@@ -96,7 +95,9 @@ class _CardMissaoState extends State<CardMissao> {
                     fontSize: 15.0),
               ),
               onPressed: () {
-                BottomSheetOnsetOfAttack(this._cardMissaoDTO.id, this._cardMissaoDTO.fkMissaoAluno).build(context);
+                BottomSheetOnsetOfAttack(this._cardMissaoDTO.id,
+                        this._cardMissaoDTO.fkMissaoAluno)
+                    .build(context);
               },
             ),
           ],

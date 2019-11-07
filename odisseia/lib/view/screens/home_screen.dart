@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 30.0,
-                    fontFamily: "AUGUSTUS"),
+                    fontFamily: "augustus"),
               ),
             ),
             bottom: PreferredSize(
