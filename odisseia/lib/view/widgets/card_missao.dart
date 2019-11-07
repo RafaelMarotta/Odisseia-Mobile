@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:odisseia/data/model/CardMissaoDTO.dart';
 import 'package:odisseia/view/widgets/alert_onset_of_attack.dart';
+import 'package:odisseia/view/widgets/bottomSheet_onset_of_attack.dart';
 
 class CardMissao extends StatefulWidget {
   final CardMissaoDTO _cardMissaoDTO;
@@ -95,7 +96,8 @@ class _CardMissaoState extends State<CardMissao> {
                     fontSize: 15.0),
               ),
               onPressed: () {
-                Alertonsetofattack(this._cardMissaoDTO.id,this._cardMissaoDTO.fkMissaoAluno).build(context);},
+                BottomSheetOnsetOfAttack(this._cardMissaoDTO.id, this._cardMissaoDTO.fkMissaoAluno).build(context);
+              },
             ),
           ],
         ),

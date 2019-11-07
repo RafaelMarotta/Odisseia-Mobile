@@ -4,6 +4,7 @@ import 'package:odisseia/view/listViews/missao_card_finished_list_view.dart';
 import 'package:odisseia/view/listViews/missao_card_list_view.dart';
 import 'package:odisseia/view/tabs/base_tab.dart';
 import 'package:odisseia/view/widgets/custom_drawer.dart';
+import 'package:odisseia/view/widgets/modal_choose_home.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -77,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: FloatingActionButton(
                         heroTag: "choose",
                         onPressed: () {
-                          //ModalChooseHome().build(context);
+                          ModalChooseHome().build(context);
                         },
                         child: Icon(Icons.add),
                         backgroundColor: Color.fromARGB(255, 35, 90, 159),
