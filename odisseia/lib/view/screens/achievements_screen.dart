@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odisseia/view/widgets/achievements_button.dart';
+import 'package:odisseia/view/widgets/button_achievements.dart';
 
 class AchievementsScreen extends StatefulWidget {
   @override
@@ -40,7 +40,7 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
           physics: BouncingScrollPhysics(),
           gridDelegate:
               SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-          children: <Widget>[AchievementsButton()],
+          children: <Widget>[ButtonAchievements()],
         ),
       ),
     );

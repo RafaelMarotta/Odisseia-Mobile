@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Modal_Edit_Nick extends StatelessWidget {
+class ModalEditNick extends StatelessWidget {
   String title() => "Novo nick:";
   Widget content = TextField(
     style: TextStyle(color: Colors.white),
@@ -10,10 +10,11 @@ class Modal_Edit_Nick extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return _buildAlertDialog(context);
-        });
+      context: context,
+      builder: (BuildContext context) {
+        return _buildAlertDialog(context);
+      },
+    );
     return null;
   }
 
@@ -22,10 +23,11 @@ class Modal_Edit_Nick extends StatelessWidget {
         content: content,
         actions: <Widget>[
           FlatButton(
-              child: Text("Ok"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              })
+            child: Text("Ok"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
         ],
       );
 }

@@ -125,12 +125,12 @@ Widget _descricao(BuildContext context) {
             Text(
               "Encantado o Guerreiro",
               style: TextStyle(
-                  fontFamily: 'AUGUSTUS', fontSize: 20, color: Colors.white),
+                  fontFamily: 'RobotoCondensed-Regular', fontSize: 20, color: Colors.white),
             ),
             FloatingActionButton(
               heroTag: "edit",
               onPressed: () {
-                Modal_Edit_Nick().build(context);
+                ModalEditNick().build(context);
               },
               child: Icon(Icons.edit),
               backgroundColor: Color.fromARGB(255, 9, 38, 66),

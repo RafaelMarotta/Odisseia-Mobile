@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:odisseia/view/widgets/modal_achievements.dart';
 
-class AchievementsButton extends StatefulWidget {
+class ButtonAchievements extends StatefulWidget {
   @override
-  _AchievementsButtonState createState() => _AchievementsButtonState();
+  _ButtonAchievementsState createState() => _ButtonAchievementsState();
 }
 
-class _AchievementsButtonState extends State<AchievementsButton> {
+class _ButtonAchievementsState extends State<ButtonAchievements> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,7 +20,9 @@ class _AchievementsButtonState extends State<AchievementsButton> {
             child: Image.asset('images/boat.png'),
             borderSide: BorderSide(
                 color: Colors.white, style: BorderStyle.solid, width: 1.5),
-            onPressed: () {},
+            onPressed: () {
+              ModalAchievements().build(context);
+            },
           ),
         ),
         SizedBox(height: 5,),
