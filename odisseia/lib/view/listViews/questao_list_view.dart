@@ -119,7 +119,6 @@ class QuestaoListViewState extends State<QuestaoListView>
     resolucaoDTO.tempoGasto = resolucaoDTO.tempoGasto != null
         ? resolucaoDTO.tempoGasto + stopwatch.elapsedMilliseconds
         : resolucaoDTO.tempoGasto = stopwatch.elapsedMilliseconds;
-    stopwatch = Stopwatch();
     await MissaoResolucaoRepository().saveOrUpdate(resolucaoDTO);
     return Future;
   }
@@ -141,8 +140,10 @@ class QuestaoListViewState extends State<QuestaoListView>
       selectedValue = currencies.items[0].alternativas[0].id;
       resolucaoDTO.fkQuestao = currencies.items[0].id;
       resolucaoDTO.fkAlternativa = currencies.items[0].alternativas[0].id;
+      resolucaoDTO.tempoGasto = null;
     });
     recoverChanges(resolucaoDTO);
+    stopwatch.reset();
     stopwatch.start();
   }
 
