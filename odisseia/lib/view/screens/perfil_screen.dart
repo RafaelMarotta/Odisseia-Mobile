@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:odisseia/view/tabs/base_tab.dart';
 import 'package:odisseia/view/tabs/perfil_tab.dart';
 
 class PerfilScreen extends StatefulWidget {

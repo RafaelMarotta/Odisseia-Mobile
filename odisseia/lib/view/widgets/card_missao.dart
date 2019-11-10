@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:odisseia/data/model/CardMissaoDTO.dart';
-import 'package:odisseia/view/widgets/alert_onset_of_attack.dart';
 import 'package:odisseia/view/widgets/bottomSheet_onset_of_attack.dart';
 
 class CardMissao extends StatefulWidget {

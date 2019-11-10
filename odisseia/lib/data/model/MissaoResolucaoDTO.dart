@@ -25,4 +25,5 @@ class MissaoResolucaoDTO{
 
 abstract class IMissaoResolutionRepository{
   Future<bool> salvarMissaoResolucao(List<MissaoResolucaoDTO> resolucao);
+  Future<List<MissaoResolucaoDTO>> fetchByMissaoByMissaoAlunoId(int missaoId);
 }

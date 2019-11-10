@@ -1,9 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:json_annotation/json_annotation.dart';
-import 'package:odisseia/data/model/MissaoResolucaoDTO.dart';
 import 'package:odisseia/presentation/missao_resolution_presenter.dart';
+import 'package:odisseia/utils/flutter_utils.dart';
 import 'package:odisseia/view/listViews/questao_list_view.dart';
-import 'package:odisseia/view/widgets/bottomSheet_missaoFinalizada.dart';
+
+import 'home_screen.dart';
 
 class MissaoScreen extends StatefulWidget {
   final int missaoId;
@@ -22,13 +24,12 @@ class _MissaoScreenState extends State<MissaoScreen>
   bool _hasNextPage = true;
   bool _hasPreviousPage = false;
   MissaoResolucaoPresenter _presenter;
-  
+  bool block = false;
+
   @override
   void initState() {
     super.initState();
   }
-
-  List<MissaoResolucaoDTO> listResolucaoDTO = new List<MissaoResolucaoDTO>();
 
   final GlobalKey<QuestaoListViewState> _key = GlobalKey();
   _MissaoScreenState(this.missaoId, this.missaoAlunoId) {
@@ -74,16 +75,18 @@ class _MissaoScreenState extends State<MissaoScreen>
 
   Widget _getButtonPreviousQuestion() => Padding(
         padding: EdgeInsets.only(bottom: 10, left: 10),
-        child: Align(
+        child: block ? null :  Align(
           alignment: Alignment.bottomLeft,
           child: FloatingActionButton(
             disabledElevation: 10,
             heroTag: "btnVoltar",
-            onPressed: () {
-              if (_hasPreviousPage) {
-                listResolucaoDTO.removeLast();
-                _key.currentState.previousQuestion();
-              }
+            onPressed: block ? null : () {
+              setState(() {
+                sleep(Duration(milliseconds: 150));
+                block = true; 
+                previousQuestion();
+              });
+              
             },
             child: Icon(Icons.keyboard_arrow_left),
             backgroundColor: Color.fromARGB(255, 35, 90, _hasPreviousPage ? 159 : 0),
@@ -93,14 +96,17 @@ class _MissaoScreenState extends State<MissaoScreen>
 
   Widget _getButtonNextQuestion() => Padding(
         padding: EdgeInsets.only(bottom: 10, right: 10),
-        child: Align(
+        child: block ? null : Align(
           alignment: Alignment.bottomRight,
           child: FloatingActionButton(
             heroTag: "btnProxima",
-            onPressed: () {
-              listResolucaoDTO.add(
-                  MissaoResolucaoDTO.build(_key.currentState.resolucaoDTO));
-              _key.currentState.nextQuestion();
+            onPressed: block ? null : () {
+              setState(() {
+               sleep(Duration(milliseconds: 150));
+               block = true; 
+               nextQuestion();
+              });
+              
             },
             child: Icon(Icons.keyboard_arrow_right),
             backgroundColor: Color.fromARGB(255, 35, 90, 159),
@@ -108,7 +114,8 @@ class _MissaoScreenState extends State<MissaoScreen>
         ),
       );
 
-  Widget _getButtonFinalizar() => Row(
+  Widget _getButtonFinalizar() { 
+    return Row (
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           Padding(
@@ -117,11 +124,10 @@ class _MissaoScreenState extends State<MissaoScreen>
               alignment: Alignment.bottomRight,
               child: FloatingActionButton.extended(
                 heroTag: "btnFinalizar",
-                onPressed: () {
-                  _key.currentState.finalizeQuestion();
-                  listResolucaoDTO.add(MissaoResolucaoDTO.build(_key.currentState.resolucaoDTO));
-                  _presenter.submit(listResolucaoDTO);
-                  
+                onPressed: block ? null : () {
+                  block = true;
+                  sleep(Duration(milliseconds: 150));
+                  submit();
                 },
                 label: Text('Finalizar'),
                 icon: Icon(Icons.save),
@@ -131,7 +137,27 @@ class _MissaoScreenState extends State<MissaoScreen>
           ),
         ],
       );
+  }
 
+  void nextQuestion() async {
+    await _key.currentState.finalizeQuestion();
+    _key.currentState.nextQuestion();
+      block = false;
+  }
+
+  void previousQuestion() async {
+    if (_hasPreviousPage) {
+      await _key.currentState.finalizeQuestion();
+      _key.currentState.previousQuestion();
+        block = false;
+    }
+  }
+
+  void submit() async {
+     await _key.currentState.finalizeQuestion();
+     _presenter.submit(missaoAlunoId);
+  }
+  
   @override
   void hasNextPage(bool hasNextPage) {
     setState(() {
@@ -153,9 +179,6 @@ class _MissaoScreenState extends State<MissaoScreen>
 
   @override
   void onFinalizarMissaoLoadResult(bool result) {
-    Navigator.pop(context);
-    BottomSheetMissaoFinalizada().build(context);
-    //Exibir sucesso
-    print("salvou");
+    FlutterUtils.goToScreen(context,HomeScreen());
   }
 }

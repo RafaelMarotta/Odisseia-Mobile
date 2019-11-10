@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ModalEditNick extends StatelessWidget {
   String title() => "Novo nick:";
-  Widget content = TextField(
+  final Widget content = TextField(
     style: TextStyle(color: Colors.white),
     keyboardType: TextInputType.text,
   );

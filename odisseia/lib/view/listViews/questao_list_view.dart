@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:odisseia/data/model/AlternativaDTO.dart';
@@ -8,7 +6,8 @@ import 'package:odisseia/data/model/QuestaoDTO.dart';
 import 'package:odisseia/data/model/QuestaoPaginationDTO.dart';
 import 'package:odisseia/presentation/Contracts/pagination_contract.dart';
 import 'package:odisseia/presentation/questao_resolution_presenter.dart';
-import 'package:odisseia/utils/shared_utils.dart';
+
+import '../../data/repository/missao_resolucao_repository.dart';
 
 class QuestaoListView extends StatefulWidget {
   final int _missaoId;
@@ -31,6 +30,7 @@ class QuestaoListViewState extends State<QuestaoListView>
   final IPaginationContract _pagination;
   final int _missaoAlunoId;
   Stopwatch stopwatch = Stopwatch();
+
 
   QuestaoResolutionPresenter _presenter;
   QuestaoPaginationDTO currencies;
@@ -109,32 +109,24 @@ class QuestaoListViewState extends State<QuestaoListView>
   void nextQuestion() {
     if (currencies.hasNextPage) {
       setState(() {
-        finalizeQuestion();
         ordem++;
         _presenter.loadCurrencies(_missaoId, ordem);
       });
     }
   }
 
-  void finalizeQuestion() {
+  Future<void> finalizeQuestion() async {
     resolucaoDTO.tempoGasto = resolucaoDTO.tempoGasto != null
         ? resolucaoDTO.tempoGasto + stopwatch.elapsedMilliseconds
         : resolucaoDTO.tempoGasto = stopwatch.elapsedMilliseconds;
-    stopwatch.reset();
-    SharedUtils.save(buildHashResolucao(), jsonEncode(resolucaoDTO.toJson()));
-  }
-
-  String buildHashResolucao() {
-    return "M:" +
-        resolucaoDTO.fkMissaoAluno.toString() +
-        "Q:" +
-        resolucaoDTO.fkQuestao.toString();
+    stopwatch = Stopwatch();
+    await MissaoResolucaoRepository().saveOrUpdate(resolucaoDTO);
+    return Future;
   }
 
   void previousQuestion() {
     if (currencies.hasPreviousPage) {
       setState(() {
-        finalizeQuestion();
         ordem--;
         _presenter.loadCurrencies(_missaoId, ordem);
       });
@@ -156,7 +148,7 @@ class QuestaoListViewState extends State<QuestaoListView>
 
   void recoverChanges(MissaoResolucaoDTO dto) async {
     MissaoResolucaoDTO dto =
-        await SharedUtils.getMissaoResolucaoDTO(buildHashResolucao());
+        await MissaoResolucaoRepository().fetchByResolucaoDTO(resolucaoDTO);
     if (dto != null) {
       resolucaoDTO.tempoGasto = dto.tempoGasto;
       resolucaoDTO.fkAlternativa = dto.fkAlternativa;

@@ -18,8 +18,8 @@ class MissaoResolucaoPresenter {
       _repository = new MissaoResolucaoRepository();
     }
 
-    void submit(List<MissaoResolucaoDTO> dto) {
-    _repository.salvarMissaoResolucao(dto)
+    void submit(int missaoAlunoId) async{
+    _repository.salvarMissaoResolucao(await _repository.fetchByMissaoByMissaoAlunoId(missaoAlunoId))
     .then((dto) => _view.onFinalizarMissaoLoadResult(dto))
     .catchError((error) => _view.onFailFinalizarMissao());
   }
