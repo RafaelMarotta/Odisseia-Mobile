@@ -31,7 +31,6 @@ class QuestaoListViewState extends State<QuestaoListView>
   final int _missaoAlunoId;
   Stopwatch stopwatch = Stopwatch();
 
-
   QuestaoResolutionPresenter _presenter;
   QuestaoPaginationDTO currencies;
 
@@ -84,34 +83,57 @@ class QuestaoListViewState extends State<QuestaoListView>
   }
 
   Widget _getAlternativa(AlternativaDTO alternativaDTO) {
-    return Container(
-        margin: EdgeInsets.only(top: 15),
-        child: RadioListTile(
-          title: Text(
-            alternativaDTO.texto,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 15,
-              fontFamily: 'RobotoCondensed-Regular',
+    return Column(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(top: 15),
+          child: InkWell(
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border.all(color: Colors.white24),
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(10.0),
+                    topLeft: Radius.circular(10.0),
+                    bottomLeft: Radius.circular(10.0),
+                    bottomRight: Radius.circular(10.0),
+                ),
+              ),
+              child: RadioListTile(
+                title: Text(
+                  alternativaDTO.texto,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontFamily: 'RobotoCondensed-Regular',
+                  ),
+                ),
+                value: alternativaDTO.id,
+                groupValue: selectedValue,
+                onChanged: (value) {
+                  setState(
+                    () {
+                      selectedValue = value;
+                      resolucaoDTO.fkAlternativa = value;
+                    },
+                  );
+                },
+              ),
             ),
           ),
-          value: alternativaDTO.id,
-          groupValue: selectedValue,
-          onChanged: (value) {
-            setState(() {
-              selectedValue = value;
-              resolucaoDTO.fkAlternativa = value;
-            });
-          },
-        ));
+        ),
+      ],
+    );
   }
 
   void nextQuestion() {
     if (currencies.hasNextPage) {
-      setState(() {
-        ordem++;
-        _presenter.loadCurrencies(_missaoId, ordem);
-      });
+      setState(
+        () {
+          ordem++;
+          _presenter.loadCurrencies(_missaoId, ordem);
+        },
+      );
     }
   }
 
@@ -125,23 +147,27 @@ class QuestaoListViewState extends State<QuestaoListView>
 
   void previousQuestion() {
     if (currencies.hasPreviousPage) {
-      setState(() {
-        ordem--;
-        _presenter.loadCurrencies(_missaoId, ordem);
-      });
+      setState(
+        () {
+          ordem--;
+          _presenter.loadCurrencies(_missaoId, ordem);
+        },
+      );
     }
   }
 
   @override
   void onLoadQuestaoPaginationComplete(
       QuestaoPaginationDTO questaoPaginationDTO) {
-    setState(() {
-      currencies = questaoPaginationDTO;
-      selectedValue = currencies.items[0].alternativas[0].id;
-      resolucaoDTO.fkQuestao = currencies.items[0].id;
-      resolucaoDTO.fkAlternativa = currencies.items[0].alternativas[0].id;
-      resolucaoDTO.tempoGasto = null;
-    });
+    setState(
+      () {
+        currencies = questaoPaginationDTO;
+        selectedValue = currencies.items[0].alternativas[0].id;
+        resolucaoDTO.fkQuestao = currencies.items[0].id;
+        resolucaoDTO.fkAlternativa = currencies.items[0].alternativas[0].id;
+        resolucaoDTO.tempoGasto = null;
+      },
+    );
     recoverChanges(resolucaoDTO);
     stopwatch.reset();
     stopwatch.start();

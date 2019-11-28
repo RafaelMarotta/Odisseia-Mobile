@@ -71,7 +71,7 @@ class _CardMissaoState extends State<CardMissao> {
             style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'RobotoCondensed-Regular',
-                fontSize: 13.0),
+                fontSize: 14.0),
           ),
         ),
         Row(

@@ -66,52 +66,58 @@ Widget _info(BuildContext context) {
   return Container(
     padding: EdgeInsets.only(left: 20, right: 20),
     child: Column(
-      children: <Widget>[level, _descricao(context), _btnConquistas(context)],
+      children: <Widget>[
+        _level(context),
+        _descricao(context),
+        _btnConquistas(context)
+      ],
     ),
   );
 }
 
-Widget level = Padding(
-  padding: EdgeInsets.only(top: 10.0),
-  child: Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              "Level 10",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'RobotoCondensed-Regular',
-                  fontSize: 18.0),
-            ),
-            Text(
-              "100xp para Lvl 11",
-              style: TextStyle(
-                  color: Colors.white60,
-                  fontFamily: 'RobotoCondensed-Regular',
-                  fontSize: 16.0),
-            ),
-          ],
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 7.0),
-          child: FittedBox(
-            child: LinearPercentIndicator(
-              width: 400.0,
-              lineHeight: 10.0,
-              percent: 0.6,
-              backgroundColor: Color.fromARGB(255, 35, 90, 159),
-              progressColor: Colors.white,
+Widget _level(BuildContext context) {
+  return Padding(
+    padding: EdgeInsets.only(top: 10.0),
+    child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Level 10",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'RobotoCondensed-Regular',
+                    fontSize: 18.0),
+              ),
+              Text(
+                "100xp para Lvl 11",
+                style: TextStyle(
+                    color: Colors.white60,
+                    fontFamily: 'RobotoCondensed-Regular',
+                    fontSize: 16.0),
+              ),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 7.0),
+            child: FittedBox(
+              child: LinearPercentIndicator(
+                width: MediaQuery.of(context).size.width,
+                lineHeight: 10.0,
+                percent: 0.6,
+                backgroundColor: Color.fromARGB(255, 35, 90, 159),
+                progressColor: Colors.white,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
-  ),
-);
+  );
+}
 
 Widget _descricao(BuildContext context) {
   return Padding(
@@ -123,20 +129,22 @@ Widget _descricao(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Encantado o Guerreiro",
+              "Guerreiro",
               style: TextStyle(
-                  fontFamily: 'RobotoCondensed-Regular', fontSize: 20, color: Colors.white),
+                  fontFamily: 'RobotoCondensed-Regular',
+                  fontSize: 20,
+                  color: Colors.white),
             ),
-            FloatingActionButton(
-              heroTag: "edit",
-              onPressed: () {
-                ModalEditNick().build(context);
-              },
-              child: Icon(Icons.edit),
-              backgroundColor: Color.fromARGB(255, 9, 38, 66),
-              mini: true,
-              elevation: 0,
-            ),
+            // FloatingActionButton(
+            //   heroTag: "edit",
+            //   onPressed: () {
+            //     ModalEditNick().build(context);
+            //   },
+            //   child: Icon(Icons.edit),
+            //   backgroundColor: Color.fromARGB(255, 9, 38, 66),
+            //   mini: true,
+            //   elevation: 0,
+            // ),
           ],
         ),
         Padding(

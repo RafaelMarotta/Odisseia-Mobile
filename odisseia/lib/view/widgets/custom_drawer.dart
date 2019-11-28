@@ -14,29 +14,29 @@ class CustomDrawer extends StatelessWidget {
     Widget _buildListView() => ListView(
           padding: EdgeInsets.only(top: 50, right: 40),
           children: <Widget>[
-            GestureDetector(
-              child: Container(
-                width: 180,
-                height: 180,
-                decoration:
-                    BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 15, bottom: 20),
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    "Encantado",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30.0,
-                        fontFamily: 'DalekPinpointBold'),
-                  ),
-                ],
-              ),
-            ),
+            // GestureDetector(
+            //   child: Container(
+            //     width: 180,
+            //     height: 180,
+            //     decoration:
+            //         BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+            //   ),
+            // ),
+            // Container(
+            //   margin: EdgeInsets.only(top: 15, bottom: 20),
+            //   child: Column(
+            //     children: <Widget>[
+            //       Text(
+            //         "Encantado",
+            //         textAlign: TextAlign.center,
+            //         style: TextStyle(
+            //             color: Colors.white,
+            //             fontSize: 30.0,
+            //             fontFamily: 'DalekPinpointBold'),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             DrawerTile("images/helmet.png", "PERFIL", PerfilScreen()),
             DrawerTile("images/scroll.png", "MISSÕES", HomeScreen())
           ],
